@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.commands.dual_joysticks;
 
 
 
@@ -53,3 +54,4 @@ private final DifferentialDrive m_drive = new DifferentialDrive(m_leftGroup, m_r
       m_rearRight.stopMotor();
     }
 }
+
