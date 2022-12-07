@@ -23,12 +23,13 @@ public class RobotContainer {
   private final drivesystem DriveSystem = new drivesystem();
 
   private final dual_joysticks Dual_Joysticks = new dual_joysticks(DriveSystem);
-  drivesystem.SetDefaultCommand(dual_joysticks);
-
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    DriveSystem.setDefaultCommand(Dual_Joysticks);
+
   }
 
   /**

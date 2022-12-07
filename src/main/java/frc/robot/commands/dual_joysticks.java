@@ -14,7 +14,7 @@ public class dual_joysticks extends CommandBase {
       @Override
       public void execute() {
         double leftSpeed = OI.controller.getLeftY() * Constants.kMaxSpeed;
-        double rightSpeed = OI.controller.getRightY() * Constants.kMaxSpeed; 
+        double rightSpeed = OI.controller.getRightY() * -Constants.kMaxSpeed; 
         DriveSystem.setSpeed(leftSpeed, rightSpeed);
 
       }
