@@ -14,4 +14,5 @@ package frc.robot;
  */
 public final class Constants {
  public static final int smartCurrentLimit = 40;
+ public static final double kMaxSpeed = 0.5;
 }
