@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
-import frc.robot.commands.dual_joysticks;
 
 
 
-public class drivesystem extends SubsystemBase {
+public class DriveSubsystem extends SubsystemBase {
+
 private final CANSparkMax m_frontLeft = new CANSparkMax(1, MotorType.kBrushless);
 private final CANSparkMax m_rearLeft = new CANSparkMax(2, MotorType.kBrushless);
 private final CANSparkMax m_frontRight = new CANSparkMax(3, MotorType.kBrushless);
@@ -21,7 +21,7 @@ private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_fro
 
 private final DifferentialDrive m_drive = new DifferentialDrive(m_leftGroup, m_rightGroup);
 
-  public drivesystem(){
+  public DriveSubsystem(){
 
     m_frontLeft.clearFaults();
     m_rearLeft.clearFaults();
@@ -31,6 +31,8 @@ private final DifferentialDrive m_drive = new DifferentialDrive(m_leftGroup, m_r
     m_rearLeft.setSmartCurrentLimit(Constants.smartCurrentLimit);
     m_frontRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
     m_rearRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
+    m_leftGroup.setInverted(true);
+    m_rightGroup.setInverted(false);
 
     stopwheels();
   }  
