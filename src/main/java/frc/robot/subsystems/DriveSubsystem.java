@@ -71,12 +71,12 @@ public class DriveSubsystem extends SubsystemBase {
     return flEncoder.getVelocity();
   }
 
-  //stops the wheels on the robot
-  public void stopwheels(){
-      m_frontLeft.stopMotor();
-      m_rearLeft.stopMotor();
-      m_frontRight.stopMotor();
-      m_rearRight.stopMotor();
+  // stops the wheels on the robot
+  public void stopwheels() {
+    m_frontLeft.stopMotor();
+    m_rearLeft.stopMotor();
+    m_frontRight.stopMotor();
+    m_rearRight.stopMotor();
   }
 
 }
