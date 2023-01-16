@@ -19,5 +19,7 @@ package frc.robot;
 public final class Constants {
     public static final int smartCurrentLimit = 40;
     public static final double kMaxSpeed = 0.5;
-    public static final double distanceMult = 0.05;
+    public static final double distanceMult = 0.035;
+    public static final double steerMult = 0.01;
+    public static final double minAim = 0.05;
 }

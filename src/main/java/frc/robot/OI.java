@@ -2,12 +2,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class OI {
 
   // Creates Xbox Controller
 
   public static CommandXboxController Controller = new CommandXboxController(0);
+  
+  //for use when we don't want to bind a button to a command
+  public static XboxController noCommandController = new XboxController(0);
 
   // button bindings for Command use
   static Trigger aButton = Controller.a(); // a button
@@ -15,7 +19,7 @@ public class OI {
   static Trigger xButton = Controller.x(); // x button
   static Trigger yButton = Controller.y(); // y button
   static Trigger startButton = Controller.start(); // start button
-  static Trigger backButton = Controller.back(); // back button
+  static Trigger backButton = Controller.back(); // back button - being used to cancel commands, can be changed.
   static Trigger LBButton = Controller.leftBumper(); // left bumper
   static Trigger RBButton = Controller.rightBumper(); // right bumper
   static Trigger downDPButton = Controller.povDown(); // down on D-Pad

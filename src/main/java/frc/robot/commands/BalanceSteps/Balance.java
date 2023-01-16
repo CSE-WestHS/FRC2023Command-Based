@@ -13,6 +13,8 @@ public class Balance extends CommandBase {
     // timer is used to check how long robot stays level
     private final Timer Timer = new Timer();
     float pitch;
+    float desiredYaw;
+    float currentYaw;
 
     public Balance(DriveSubsystem driveSystem, NavchipManager NAV) {
 
@@ -27,6 +29,7 @@ public class Balance extends CommandBase {
         DriveSubsystem.stopwheels();
         Timer.stop();
         Timer.reset();
+        desiredYaw = NavchipManager.getYaw();
 
     }
 
@@ -35,19 +38,28 @@ public class Balance extends CommandBase {
     public void execute() {
         // update pitch reading and error
         pitch = NavchipManager.getPitch();
-        float pitchError = -pitch;
-
+        currentYaw = NavchipManager.getYaw();
         // if robot isn't level
         if (pitch >= 3 || pitch <= -3) {
-
+            //Reset timer
             Timer.reset();
             Timer.stop();
+            //Figure out speed at which to drive
+            double driveAdj = pitch * Constants.distanceMult;
+            double steerAdj = 0.0;
+            //Figure out how much to turn
+            if (currentYaw >= desiredYaw - 5 || currentYaw <= desiredYaw + 5) {
+                steerAdj = currentYaw * Constants.steerMult;
+            }
 
-            double driveAdj = pitchError * Constants.distanceMult;
-            DriveSubsystem.setSpeed(driveAdj, driveAdj);
+            //set speeds
+            double leftSpd = steerAdj + driveAdj;
+            double rightSpd = -steerAdj + driveAdj;
+            DriveSubsystem.setSpeed(leftSpd, rightSpd);
         }
+
         // if robot is level
-        else if (pitch <= 3 && pitch >= -3) {
+        else if (pitch <= 2 && pitch >= -2) {
             DriveSubsystem.stopwheels();
             Timer.start();
         }

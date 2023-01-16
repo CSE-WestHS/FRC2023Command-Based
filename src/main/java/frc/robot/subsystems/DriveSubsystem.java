@@ -37,8 +37,8 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
     m_rearRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
 
-    m_leftGroup.setInverted(true);
-    m_rightGroup.setInverted(false);
+    m_leftGroup.setInverted(false);
+    m_rightGroup.setInverted(true);
 
     flEncoder.setPosition(0);
     frEncoder.setPosition(0);
