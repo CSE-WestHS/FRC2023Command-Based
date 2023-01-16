@@ -63,7 +63,12 @@ public class PhotonVisionManager{
        targets = myCamera.getLatestResult().getTargets();
        targetArray = new PhotonTrackedTarget[9];
        for (PhotonTrackedTarget index : targets){
-        targetArray[index.getFiducialId()] = index;
+        try {
+            targetArray[index.getFiducialId()] = index;
+        } catch (Exception IndexOutOfBoundsException){
+            System.out.println("Invalid ID " +index.getFiducialId());
+        }
+        
        }
     }
     
