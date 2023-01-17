@@ -71,5 +71,21 @@ public class PhotonVisionManager{
         
        }
     }
+    public Boolean tagSeen(){
+        
+        if (AprilTagsSeen().length == 0){
+            return false;
+        }
+        
+        return true;
+    }
+    public Boolean tagSeen(int tag){
+        try {
+            targetArray[tag].getFiducialId();
+            return true;
+        } catch (Exception NullPointerException){
+            return false;
+        }
+    }
     
 }
