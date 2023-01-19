@@ -21,7 +21,7 @@ public class TurnToTag extends CommandBase{
   }
   @Override
   public void execute(){
-    driveSystem.setSpeed(-0.5, 0.5);
+    driveSystem.setSpeed(-0.33, 0.33);
   }
   @Override
   public boolean isFinished() {

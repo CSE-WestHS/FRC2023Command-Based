@@ -14,8 +14,10 @@ import frc.robot.commands.BasicDrive.TurnLeft;
 import frc.robot.commands.BasicDrive.TurnRight;
 import frc.robot.commands.Dual_Joysticks;
 import frc.robot.commands.BasicAuto;
+import frc.robot.commands.AprilTagCommands.*;
 
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.PhotonVisionManager;
 
 
 
@@ -34,6 +36,9 @@ public class RobotContainer {
   private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem,3.0, 0.25 );
   private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, 30, 0.5);
   private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, 60, 0.5);
+  PhotonVisionManager photon = new PhotonVisionManager();
+  
+  private final TurnToTag turnToTag5 = new TurnToTag(DriveSubsystem,photon, 5);
   
   private final BasicAuto Auto = new BasicAuto(DriveSubsystem);
 
@@ -44,6 +49,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     DriveSubsystem.setDefaultCommand(Dual_Joysticks);
+    photon.setCamera("Cam1");
 
   }
 
@@ -58,6 +64,8 @@ public class RobotContainer {
     OI.bButton.onTrue(DriveThreeRotoations);
     OI.xButton.onTrue(Turn90Degrees);
     OI.yButton.onTrue(Turn180Degrees);
+    OI.startButton.onTrue(turnToTag5);
+    
   }
 
   /**
@@ -69,4 +77,8 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
   return Auto;
   }
+  public PhotonVisionManager getPhoton(){
+    return photon;
+  }
+  
 }
