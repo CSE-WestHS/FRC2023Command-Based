@@ -3,6 +3,7 @@ package frc.robot.commands.BasicDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.NavchipManager;
+import frc.robot.RobotContainer;
 
 public class TurnRight extends CommandBase {
   /**
@@ -60,7 +61,7 @@ public class TurnRight extends CommandBase {
   public boolean isFinished() {
     // accounts for desiredYaw changing to a negative
     if (desiredYaw >= 0) {
-    return navchipManager.getYaw() >= currentYaw;
+    return navchipManager.getYaw() >= desiredYaw;
     } else {
      return navchipManager.getYaw() <= desiredYaw;
      }

@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    navX = new NavchipManager();
+    navX = m_robotContainer.navchipManager;
 
   }
 
