@@ -20,7 +20,7 @@ public class Balance extends CommandBase {
 
         DriveSubsystem = driveSystem;
         NavchipManager = NAV;
-        addRequirements(driveSystem, NAV);
+        addRequirements(driveSystem);
 
     }
 
@@ -53,8 +53,8 @@ public class Balance extends CommandBase {
             }
 
             //set speeds
-            double leftSpd = steerAdj + driveAdj;
-            double rightSpd = -steerAdj + driveAdj;
+            double leftSpd = -steerAdj + driveAdj;
+            double rightSpd = steerAdj + driveAdj;
             DriveSubsystem.setSpeed(leftSpd, rightSpd);
         }
 

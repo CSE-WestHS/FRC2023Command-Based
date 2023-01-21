@@ -16,7 +16,7 @@ public class DriveTillDegrees extends CommandBase {
         NavchipManager = NAV;
 
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(driveSystem, NAV);
+        addRequirements(driveSystem);
 
     }
 

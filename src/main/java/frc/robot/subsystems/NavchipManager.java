@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 // Dependency needs vendordep https://dev.studica.com/releases/2023/NavX.json
-public class NavchipManager extends SubsystemBase {
+public class NavchipManager{
     AHRS ahrs;
     long bootupTimestamp;
     long lastTimestamp;
