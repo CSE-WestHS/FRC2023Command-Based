@@ -23,6 +23,7 @@ public class NavchipManager{
         bootupTimestamp = Instant.now().getEpochSecond();
         lastTimestamp = bootupTimestamp;
         lastVelocity = (float) 0.0;
+        ahrs.zeroYaw();
     }
 
     public NavchipManager(AHRS newAhrs) {

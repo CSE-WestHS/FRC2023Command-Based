@@ -1,29 +1,49 @@
 package frc.robot.commands.BasicDrive;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
-
-public class TurnLeft extends CommandBase{
-      /**
+import frc.robot.subsystems.NavchipManager;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+public class TurnLeft extends CommandBase {
+  /**
    * Creates a command that drives the robot forward (or backward) X rotations
    *
    * @param drivesystem The subsystem used by this command.
    */
   private final DriveSubsystem DriveSubsystem;
-  private final double rotations;
+  private final NavchipManager navchipManager;
+  private final double degrees;
   private final double speed;
+  private double currentYaw;
+  private double desiredYaw;
 
-  public TurnLeft(DriveSubsystem drivesystem, double rotations, double speed) {
+  public TurnLeft(DriveSubsystem drivesystem, NavchipManager NAV, double deg, double spd) {
+    // assigning values
     DriveSubsystem = drivesystem;
-    this.rotations = rotations;
-    this.speed = speed;
+    degrees = deg;
+    speed = spd;
+    navchipManager = NAV;
+
     addRequirements(drivesystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   DriveSubsystem.resetEncoders();
-   DriveSubsystem.stopwheels();
+
+    DriveSubsystem.resetEncoders();
+    DriveSubsystem.stopwheels();
+
+    // code uses the yaw of nav to decide when to stop rotating
+    currentYaw = navchipManager.getYaw();
+    SmartDashboard.putNumber("getYaw", currentYaw);
+    desiredYaw = currentYaw - degrees;
+    // used to account for sign change of yaw after it reaches -180*
+    if (desiredYaw < -180) {
+      double yawDifference = -(desiredYaw + 180);
+      desiredYaw = 180 - yawDifference;
+    }
+    SmartDashboard.putNumber("Desired Yaw", desiredYaw);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,6 +62,10 @@ public class TurnLeft extends CommandBase{
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return DriveSubsystem.getEncoderPosition() >= rotations;
+    // accounts for desiredYaw changing to a negative
+    if (desiredYaw >= 0) {
+    return navchipManager.getYaw() <= desiredYaw && navchipManager.getYaw() > 0;
+     }
+    return navchipManager.getYaw() <= desiredYaw;
   }
 }
