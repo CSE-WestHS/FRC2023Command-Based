@@ -5,11 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.NavchipManager;
-import frc.robot.OI;
+
 
 
 /**
@@ -23,7 +21,6 @@ import frc.robot.OI;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  NavchipManager navX;
   private RobotContainer m_robotContainer;
 
   /**
@@ -37,7 +34,6 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    navX = m_robotContainer.navchipManager;
 
   }
 
@@ -62,8 +58,6 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    navX.update();
-    navX.displayAllAxes();
 
   }
 

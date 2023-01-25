@@ -35,7 +35,7 @@ public class RobotContainer {
   private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
   private final DriveForward DriveFiveRotations = new DriveForward(DriveSubsystem, 5.0, 0.5);
   private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem, 3.0, 0.25);
-  private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, -90, 0.5);
+  private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, 90, 0.5);
   private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, navchipManager, 180, 0.3);
 
   // balance commands

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 // Dependency needs vendordep https://dev.studica.com/releases/2023/NavX.json
-public class NavchipManager{
+public class NavchipManager extends SubsystemBase{
     AHRS ahrs;
     long bootupTimestamp;
     long lastTimestamp;
@@ -100,5 +100,9 @@ public class NavchipManager{
         XPosition -= Math.cos((getYaw() / 180) * Math.PI) * actualDistance; // Displacement y in metres
 
     }
-
+    @Override
+    public void periodic() {
+        update();
+        displayAllAxes();
+    }
 }

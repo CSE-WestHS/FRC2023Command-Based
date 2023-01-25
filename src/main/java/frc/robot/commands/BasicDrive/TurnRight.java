@@ -24,7 +24,7 @@ public class TurnRight extends CommandBase {
     speed = spd;
     navchipManager = NAV;
 
-    addRequirements(drivesystem);
+    addRequirements(drivesystem, NAV);
   }
 
   // Called when the command is initially scheduled.

@@ -20,7 +20,7 @@ public class Balance extends CommandBase {
 
         DriveSubsystem = driveSystem;
         NavchipManager = NAV;
-        addRequirements(driveSystem);
+        addRequirements(driveSystem, NAV);
 
     }
 
