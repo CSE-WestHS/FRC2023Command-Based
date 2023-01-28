@@ -71,6 +71,7 @@ public class DriveSubsystem extends SubsystemBase {
     // that it starts from (allows turning in place)
     double turnAdj = Math.max(baseTS, Math.abs(xSpeed));
 
+
     // Find the speeds of the left and right wheels
     double lSpeed = xSpeed + zRotation * turnAdj;
     double rSpeed = xSpeed - zRotation * turnAdj;
@@ -94,9 +95,9 @@ public class DriveSubsystem extends SubsystemBase {
     // If the speed is negative and the steering setpoint is small, then invert the
     // steering controls
     if (xSpeed < -0.05 && Math.abs(zRotation) < 0.15) {
-      curvatureDrive(xSpeed, zRotation); // Inverted steering
+      curvatureDrive(xSpeed, zRotation,Constants.BASE_TURNING_SPEED.get()); // Inverted steering
     } else {
-      curvatureDrive(xSpeed, -zRotation); // Standard steering
+      curvatureDrive(xSpeed, -zRotation, Constants.BASE_TURNING_SPEED.get()); // Standard steering
     }
   }
 

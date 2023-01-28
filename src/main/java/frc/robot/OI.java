@@ -1,11 +1,12 @@
 package frc.robot;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class OI{
 
   //Creates Xbox Controller
-
+  public static XboxController noCommandController = new XboxController(0);
   public static CommandXboxController Controller = new CommandXboxController(0);
 
   //button bindings for Command use

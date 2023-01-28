@@ -13,6 +13,7 @@ import frc.robot.commands.BasicDrive.DriveForward;
 import frc.robot.commands.BasicDrive.TurnLeft;
 import frc.robot.commands.BasicDrive.TurnRight;
 import frc.robot.commands.Dual_Joysticks;
+import frc.robot.commands.ImpulseDrive;
 import frc.robot.commands.BasicAuto;
 
 import frc.robot.subsystems.DriveSubsystem;
@@ -34,7 +35,8 @@ public class RobotContainer {
   private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem,3.0, 0.25 );
   private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, 30, 0.5);
   private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, 60, 0.5);
-  
+  private final ImpulseDrive ImpulseDrive = new ImpulseDrive(DriveSubsystem, OI.noCommandController);
+
   private final BasicAuto Auto = new BasicAuto(DriveSubsystem);
 
 
@@ -43,7 +45,7 @@ public class RobotContainer {
     
     // Configure the button bindings
     configureButtonBindings();
-    DriveSubsystem.setDefaultCommand(Dual_Joysticks);
+    DriveSubsystem.setDefaultCommand(ImpulseDrive);
 
   }
 
