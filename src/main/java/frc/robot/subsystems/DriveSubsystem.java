@@ -78,5 +78,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.stopMotor();
     m_rearRight.stopMotor();
   }
-
+  public void runMotor(double spd){
+    m_rearRight.set(spd);
+  }
 }

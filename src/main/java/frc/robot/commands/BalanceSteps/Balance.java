@@ -48,7 +48,7 @@ public class Balance extends CommandBase {
             double driveAdj = pitch * Constants.distanceMult;
             double steerAdj = 0.0;
             //Figure out how much to turn
-            if (currentYaw >= desiredYaw - 5 || currentYaw <= desiredYaw + 5) {
+            if (currentYaw >= desiredYaw + 5 || currentYaw <= desiredYaw - 5) {
                 steerAdj = currentYaw * Constants.steerMult;
             }
 
