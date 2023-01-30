@@ -77,6 +77,9 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
   return Auto;
   }
+  /**
+   * @return
+   */
   public PhotonVisionManager getPhoton(){
     return photon;
   }
