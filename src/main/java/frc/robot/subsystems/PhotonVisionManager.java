@@ -67,6 +67,7 @@ public class PhotonVisionManager {
         return targetArray[aprilID].getArea();
     }
 
+
     public void updateCameraData() {
         // Constantly updates list of targets, if target is not visible, location is
         // NULL.
@@ -80,5 +81,6 @@ public class PhotonVisionManager {
                 System.out.println("Invalid ID " +index.getFiducialId());
             }
     }
+
     }
 }
