@@ -17,9 +17,15 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int smartCurrentLimit = 40;
-    public static final double kMaxSpeed = 0.5;
-    public static final double distanceMult = 0.035;
-    public static final double steerMult = 0.01;
-    public static final double minAim = 0.05;
+    //Motor Ports
+    public static final int EXTENDORMOTORPORT = 5;
+    public static final int CRANEMOTORPORT = 6;
+    //DriveSubsystem Constants
+    public static final int SMARTCURRENTLIMIT = 40;
+    public static final double MAXSPEED = 0.5;
+
+    //Balance Constants
+    public static final double DISTANCEMULTIPLIER = 0.035;
+    public static final double STEERINGMULTIPLIER = 0.01;
+    public static final double MINAIM = 0.05;
 }

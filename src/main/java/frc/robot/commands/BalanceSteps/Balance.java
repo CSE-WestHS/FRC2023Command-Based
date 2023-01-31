@@ -45,11 +45,11 @@ public class Balance extends CommandBase {
             Timer.reset();
             Timer.stop();
             //Figure out speed at which to drive
-            double driveAdj = pitch * Constants.distanceMult;
+            double driveAdj = pitch * Constants.DISTANCEMULTIPLIER;
             double steerAdj = 0.0;
             //Figure out how much to turn
             if (currentYaw >= desiredYaw - 5 || currentYaw <= desiredYaw + 5) {
-                steerAdj = currentYaw * Constants.steerMult;
+                steerAdj = currentYaw * Constants.STEERINGMULTIPLIER;
             }
 
             //set speeds
