@@ -45,7 +45,7 @@ public class DriveSubsystem extends SubsystemBase {
     rlEncoder.setPosition(0);
     rrEncoder.setPosition(0);
 
-    stopwheels();
+    stopWheels();
   }
 
   // sets the speed of both sides to the specific speed
@@ -72,7 +72,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   // stops the wheels on the robot
-  public void stopwheels() {
+  public void stopWheels() {
     m_frontLeft.stopMotor();
     m_rearLeft.stopMotor();
     m_frontRight.stopMotor();

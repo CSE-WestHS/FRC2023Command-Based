@@ -23,7 +23,7 @@ public class DriveForward extends CommandBase{
   @Override
   public void initialize() {
    DriveSubsystem.resetEncoders();
-   DriveSubsystem.stopwheels();
+   DriveSubsystem.stopWheels();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,7 +36,7 @@ public class DriveForward extends CommandBase{
   @Override
   public void end(boolean interrupted) {
     DriveSubsystem.resetEncoders();
-    DriveSubsystem.stopwheels();
+    DriveSubsystem.stopWheels();
   }
 
   // Returns true when the command should end.
