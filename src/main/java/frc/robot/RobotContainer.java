@@ -39,6 +39,7 @@ public class RobotContainer {
   PhotonVisionManager photon = new PhotonVisionManager();
   
   private final TurnToTag turnToTag5 = new TurnToTag(DriveSubsystem,photon, 5);
+  private final DriveToTag driveToTag5 = new DriveToTag(DriveSubsystem, photon, 5);
   
   private final BasicAuto Auto = new BasicAuto(DriveSubsystem);
 
@@ -65,6 +66,7 @@ public class RobotContainer {
     OI.xButton.onTrue(Turn90Degrees);
     OI.yButton.onTrue(Turn180Degrees);
     OI.startButton.onTrue(turnToTag5);
+    OI.upDPButton.onTrue(driveToTag5);
     
   }
 
