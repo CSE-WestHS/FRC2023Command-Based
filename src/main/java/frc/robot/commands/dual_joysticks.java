@@ -16,8 +16,8 @@ public class Dual_Joysticks extends CommandBase {
 
   @Override
   public void execute() {
-    double leftSpeed = -OI.Controller.getLeftY() * Constants.MAXSPEED;
-    double rightSpeed = -OI.Controller.getRightY() * Constants.MAXSPEED;
+    double leftSpeed = -OI.DriveController.getLeftY() * Constants.MAXSPEED;
+    double rightSpeed = -OI.DriveController.getRightY() * Constants.MAXSPEED;
     DriveSubsystem.setSpeed(leftSpeed, rightSpeed);
 
   }
