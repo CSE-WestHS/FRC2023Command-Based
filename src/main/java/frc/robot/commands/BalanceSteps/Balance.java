@@ -26,7 +26,7 @@ public class Balance extends CommandBase {
 
     @Override
     public void initialize() {
-        DriveSubsystem.stopwheels();
+        DriveSubsystem.stopWheels();
         Timer.stop();
         Timer.reset();
         desiredYaw = NavchipManager.getYaw();
@@ -60,7 +60,7 @@ public class Balance extends CommandBase {
 
         // if robot is level
         else if (pitch <= 2 && pitch >= -2) {
-            DriveSubsystem.stopwheels();
+            DriveSubsystem.stopWheels();
             Timer.start();
         }
 
@@ -71,7 +71,7 @@ public class Balance extends CommandBase {
     public void end(boolean interrupted) {
         Timer.stop();
         Timer.reset();
-        DriveSubsystem.stopwheels();
+        DriveSubsystem.stopWheels();
     }
 
     // Returns true when the command should end.

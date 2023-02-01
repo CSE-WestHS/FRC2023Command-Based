@@ -24,7 +24,7 @@ public class DriveTillDegrees extends CommandBase {
 
     public void initialize() {
         // stop the motors
-        driveSubsystem.stopwheels();
+        driveSubsystem.stopWheels();
 
     }
 
@@ -41,7 +41,7 @@ public class DriveTillDegrees extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         // stop the motors
-        driveSubsystem.stopwheels();
+        driveSubsystem.stopWheels();
     }
 
     // Returns true when the command should end.

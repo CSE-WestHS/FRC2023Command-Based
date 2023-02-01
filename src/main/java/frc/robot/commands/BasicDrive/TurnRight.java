@@ -6,12 +6,15 @@ import frc.robot.subsystems.NavchipManager;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnRight extends CommandBase {
   /**
-   * Creates a command that drives the robot forward (or backward) X rotations
+   * Creates a command that turns the robot left an inputted amount of degrees
    *
    * @param drivesystem The subsystem used by this command.
+   * @param NavchipManager The subsystem used by this command.
+   * @param degrees amount to turn, in degrees
+   * @param speed how quickly to turn
    */
   private final DriveSubsystem DriveSubsystem;
-  private final NavchipManager navchipManager;
+  private final NavchipManager NavchipManager;
   private final double degrees;
   private final double speed;
   private double currentYaw;
@@ -22,7 +25,7 @@ public class TurnRight extends CommandBase {
     DriveSubsystem = drivesystem;
     degrees = deg;
     speed = spd;
-    navchipManager = NAV;
+    NavchipManager = NAV;
 
     addRequirements(drivesystem, NAV);
   }
@@ -32,10 +35,10 @@ public class TurnRight extends CommandBase {
   public void initialize() {
 
     DriveSubsystem.resetEncoders();
-    DriveSubsystem.stopwheels();
+    DriveSubsystem.stopWheels();
 
     // code uses the yaw of nav to decide when to stop rotating
-    currentYaw = navchipManager.getYaw();
+    currentYaw = NavchipManager.getYaw();
     SmartDashboard.putNumber("getYaw", currentYaw);
     desiredYaw = currentYaw + degrees;
     // used to account for sign change of yaw after it reaches 180*
@@ -56,7 +59,7 @@ public class TurnRight extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     DriveSubsystem.resetEncoders();
-    DriveSubsystem.stopwheels();
+    DriveSubsystem.stopWheels();
   }
 
   // Returns true when the command should end.
@@ -64,8 +67,8 @@ public class TurnRight extends CommandBase {
   public boolean isFinished() {
     // accounts for desiredYaw changing to a negative
     if (desiredYaw <= 0) {
-    return navchipManager.getYaw() >= desiredYaw && navchipManager.getYaw() < 0;
+    return NavchipManager.getYaw() >= desiredYaw && NavchipManager.getYaw() < 0;
      }
-    return navchipManager.getYaw() >= desiredYaw;
+    return NavchipManager.getYaw() >= desiredYaw;
   }
 }
