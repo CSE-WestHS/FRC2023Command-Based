@@ -26,6 +26,7 @@ public final class Constants {
     //#region DriveSubsystem Constants
     public static final int SMARTCURRENTLIMIT = 40;
     public static final double MAXSPEED = 0.5;
+    public static final double PRECISIONSPEED = 0.35;
     //#endregion
     //#region Balance Constants
     public static final double DISTANCEMULTIPLIER = 0.035;
@@ -33,14 +34,14 @@ public final class Constants {
     public static final double MINAIM = 0.05;
     //#endregion
     //#region OI Constants
-    public static final int A_BUTTONPORT = 0;
-    public static final int B_BUTTONPORT = 1;
-    public static final int X_BUTTONPORT = 2;
-    public static final int Y_BUTTONPORT = 3;
-    public static final int LB_BUTTONPORT = 4;
-    public static final int RB_BUTTONPORT = 5;
-    public static final int BACK_BUTTONPORT = 6;
-    public static final int START_BUTTONPORT = 7;
+    public static final int A_BUTTONPORT = 1;
+    public static final int B_BUTTONPORT = 2;
+    public static final int X_BUTTONPORT = 3;
+    public static final int Y_BUTTONPORT = 4;
+    public static final int LB_BUTTONPORT = 5;
+    public static final int RB_BUTTONPORT = 6;
+    public static final int BACK_BUTTONPORT = 7;
+    public static final int START_BUTTONPORT = 8;
     public static final int DP_UP_BUTTONPORT = 0;
     public static final int DP_RIGHT_BUTTONPORT = 90;
     public static final int DP_DOWN_BUTTONPORT = 180;
