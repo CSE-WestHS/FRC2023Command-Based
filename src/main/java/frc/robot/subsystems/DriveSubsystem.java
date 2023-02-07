@@ -38,15 +38,15 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
     m_rearRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
 
-    m_leftGroup.setInverted(true);
-    m_rightGroup.setInverted(false);
+    m_leftGroup.setInverted(false);
+    m_rightGroup.setInverted(true);
 
     flEncoder.setPosition(0);
     frEncoder.setPosition(0);
     rlEncoder.setPosition(0);
     rrEncoder.setPosition(0);
 
-    stopwheels();
+    stopWheels();
   }
 
   // sets the speed of both sides to the specific speed
@@ -123,5 +123,4 @@ public class DriveSubsystem extends SubsystemBase {
   public void stopwheels() {
     m_drive.stopMotor();
   }
-
 }
