@@ -23,25 +23,25 @@ public class DriveBackward extends CommandBase{
   @Override
   public void initialize() {
    DriveSubsystem.resetEncoders();
-   DriveSubsystem.stopwheels();
+   DriveSubsystem.stopWheels();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DriveSubsystem.setSpeed(speed, speed);
+    DriveSubsystem.setSpeed(-speed, -speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     DriveSubsystem.resetEncoders();
-    DriveSubsystem.stopwheels();
+    DriveSubsystem.stopWheels();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return DriveSubsystem.getEncoderPosition() <= -rotations;
+    return DriveSubsystem.getEncoderPosition() >= rotations;
   }
 }
