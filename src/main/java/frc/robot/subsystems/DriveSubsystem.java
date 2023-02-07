@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import com.stuypulse.stuylib.math.SLMath;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -37,20 +38,67 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
     m_rearRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
 
-    m_leftGroup.setInverted(true);
-    m_rightGroup.setInverted(false);
+    m_leftGroup.setInverted(false);
+    m_rightGroup.setInverted(true);
 
     flEncoder.setPosition(0);
     frEncoder.setPosition(0);
     rlEncoder.setPosition(0);
     rrEncoder.setPosition(0);
 
-    stopwheels();
+    stopWheels();
   }
 
   // sets the speed of both sides to the specific speed
-  public void setSpeed(double leftSpeed, double rightSpeed) {
+  public void tankDrive(double leftSpeed, double rightSpeed) {
     m_drive.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  // Drives using arcade drive
+  public void arcadeDrive(double speed, double rotation) {
+    m_drive.arcadeDrive(speed, rotation, false);
+  }
+
+  // Drives using curvature drive algorithm
+  public void curvatureDrive(double xSpeed, double zRotation, double baseTS) {
+    // Clamp all inputs to valid values
+    xSpeed = SLMath.clamp(xSpeed, -1.0, 1.0);
+    zRotation = SLMath.clamp(zRotation, -1.0, 1.0);
+    baseTS = SLMath.clamp(baseTS, 0.0, 1.0);
+
+    // Find the amount to slow down turning by.
+    // This is proportional to the speed but has a base value
+    // that it starts from (allows turning in place)
+    double turnAdj = Math.max(baseTS, Math.abs(xSpeed));
+
+
+    // Find the speeds of the left and right wheels
+    double lSpeed = xSpeed + zRotation * turnAdj;
+    double rSpeed = xSpeed - zRotation * turnAdj;
+
+    // Find the maximum output of the wheels, so that if a wheel tries to go > 1.0
+    // it will be scaled down proportionally with the other wheels.
+    double scale = Math.max(1.0, Math.max(Math.abs(lSpeed), Math.abs(rSpeed)));
+
+    lSpeed /= scale;
+    rSpeed /= scale;
+
+    // Feed the inputs to the drivetrain
+    tankDrive(lSpeed, rSpeed);
+  }
+  public void curvatureDrive(double xSpeed, double zRotation) {
+    this.curvatureDrive(xSpeed, zRotation, 0.45);
+}
+
+  // Drives using curvature drive, but inverts the steering when driving backwards
+  public void impulseDrive(double xSpeed, double zRotation) {
+    // If the speed is negative and the steering setpoint is small, then invert the
+    // steering controls
+    if (xSpeed < -0.05 && Math.abs(zRotation) < 0.15) {
+      curvatureDrive(xSpeed, zRotation,Constants.BASE_TURNING_SPEED.get()); // Inverted steering
+    } else {
+      curvatureDrive(xSpeed, -zRotation, Constants.BASE_TURNING_SPEED.get()); // Standard steering
+    }
   }
 
   // resets the position of the inputted encoder
@@ -71,12 +119,8 @@ public class DriveSubsystem extends SubsystemBase {
     return flEncoder.getVelocity();
   }
 
-  //stops the wheels on the robot
-  public void stopwheels(){
-      m_frontLeft.stopMotor();
-      m_rearLeft.stopMotor();
-      m_frontRight.stopMotor();
-      m_rearRight.stopMotor();
+  // stops the wheels on the robot
+  public void stopwheels() {
+    m_drive.stopMotor();
   }
-
 }
