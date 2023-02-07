@@ -30,7 +30,7 @@ public class DriveBackward extends CommandBase{
   @Override
   public void execute() {
 
-    DriveSubsystem.setSpeed(-speed, -speed);
+    DriveSubsystem.tankDrive(-speed, -speed);
   }
 
   // Called once the command ends or is interrupted.
