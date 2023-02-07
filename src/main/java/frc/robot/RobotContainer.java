@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BasicDrive.*;
 import frc.robot.commands.BalanceSteps.*;
 import frc.robot.commands.Dual_Joysticks;
+import frc.robot.commands.ImpulseDrive;
+import frc.robot.commands.BasicAuto;
+
 
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.NavchipManager;
@@ -33,6 +36,7 @@ public class RobotContainer {
   // basic drive commands
   private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
   private final DriveForward DriveFiveRotations = new DriveForward(DriveSubsystem, 5.0, 0.5);
+
   private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem, 3.0, 0.25);
   private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, 90, 0.5);
   private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, navchipManager, 180, 0.3);
@@ -51,7 +55,7 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    DriveSubsystem.setDefaultCommand(Dual_Joysticks);
+    DriveSubsystem.setDefaultCommand(ImpulseDrive);
 
   }
 
