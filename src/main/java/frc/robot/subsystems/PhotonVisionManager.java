@@ -15,9 +15,11 @@ public class PhotonVisionManager{
     // This version is built for AprilTags.
     // to use: instantiate and call SetCamera with name of your camera.Then place Update in Robot Periodic and call methods when needed!
     // Plays fine with CommandBase
+    // EACH camera needs its own PhotonVisionManager
+    // Most changes are in dependency being swapped over to a newer one, all BUILD issues fixed.
 
     public static PhotonCamera newCamera(String cameraName){
-        // Run to get cameras of a specific name. Testbed camera is Cam1
+        // Run to get cameras of a specific name. Testbed camera is Cam1. Other names are not set yet, TO DO later
         return new PhotonCamera(cameraName);
     }
     public void setCamera(PhotonCamera newCamera){
