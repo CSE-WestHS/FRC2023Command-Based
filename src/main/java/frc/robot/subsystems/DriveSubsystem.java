@@ -7,7 +7,7 @@ import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -32,13 +32,13 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.clearFaults();
     m_rearRight.clearFaults();
 
-    m_frontLeft.setSmartCurrentLimit(Constants.smartCurrentLimit);
-    m_rearLeft.setSmartCurrentLimit(Constants.smartCurrentLimit);
-    m_frontRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
-    m_rearRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
+    m_frontLeft.setSmartCurrentLimit(40);
+    m_rearLeft.setSmartCurrentLimit(40);
+    m_frontRight.setSmartCurrentLimit(40);
+    m_rearRight.setSmartCurrentLimit(40);
 
-    m_leftGroup.setInverted(false);
-    m_rightGroup.setInverted(true);
+    m_leftGroup.setInverted(true);
+    m_rightGroup.setInverted(false);
 
     flEncoder.setPosition(0);
     frEncoder.setPosition(0);
@@ -71,14 +71,12 @@ public class DriveSubsystem extends SubsystemBase {
     return flEncoder.getVelocity();
   }
 
-  // stops the wheels on the robot
-  public void stopWheels() {
-    m_frontLeft.stopMotor();
-    m_rearLeft.stopMotor();
-    m_frontRight.stopMotor();
-    m_rearRight.stopMotor();
+  //stops the wheels on the robot
+  public void stopWheels(){
+      m_frontLeft.stopMotor();
+      m_rearLeft.stopMotor();
+      m_frontRight.stopMotor();
+      m_rearRight.stopMotor();
   }
-  public void runMotor(double spd){
-    m_rearRight.set(spd);
-  }
+
 }
