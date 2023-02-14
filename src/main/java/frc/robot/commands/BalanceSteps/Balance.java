@@ -6,6 +6,7 @@ import frc.robot.subsystems.NavchipManager;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants;
 
+
 public class Balance extends CommandBase {
 
     private final DriveSubsystem DriveSubsystem;
@@ -45,11 +46,11 @@ public class Balance extends CommandBase {
             Timer.reset();
             Timer.stop();
             //Figure out speed at which to drive
-            double driveAdj = pitch * Constants.DISTANCEMULTIPLIER;
+            double driveAdj = pitch * Constants.distanceMult;
             double steerAdj = 0.0;
             //Figure out how much to turn
-            if (currentYaw >= desiredYaw - 5 || currentYaw <= desiredYaw + 5) {
-                steerAdj = currentYaw * Constants.STEERINGMULTIPLIER;
+            if (currentYaw >= desiredYaw + 5 || currentYaw <= desiredYaw - 5) {
+                steerAdj = currentYaw * Constants.steerMult;
             }
 
             //set speeds

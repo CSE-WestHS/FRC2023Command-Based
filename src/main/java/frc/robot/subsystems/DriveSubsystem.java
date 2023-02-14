@@ -49,6 +49,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // sets the speed of both sides to the specific speed
   public void setSpeed(double leftSpeed, double rightSpeed) {
+    
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
 
@@ -77,5 +78,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.stopMotor();
     m_rearRight.stopMotor();
   }
-
+  public void runMotor(double spd){
+    m_rearRight.set(spd);
+  }
+  @Override
+  public void periodic(){
+    m_drive.feedWatchdog();
+  }
 }
