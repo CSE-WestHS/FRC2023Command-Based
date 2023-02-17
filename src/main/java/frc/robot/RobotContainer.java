@@ -48,10 +48,12 @@ public class RobotContainer {
 
   // command to bring lever to its starting position
   private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, Constants.LEVERSTARTPOSITION);
-
+  private final RunLever ManualLeverUP = new RunLever(leverSubsystem, false);
+  private final RunLever ManualLeverDOWN = new RunLever(leverSubsystem, true);
   // command to bring Extendor to its starting position
-  private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,
-      Constants.EXTENDORSTARTPOSITION);
+  private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,Constants.EXTENDORSTARTPOSITION);
+  private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false);
+  private final RunExtendor ExtendIn = new RunExtendor(extendorSubsystem, true);
 
   // commands to run the claw
   private final DropObject dropObject = new DropObject(clawSubsystem);
@@ -87,10 +89,13 @@ public class RobotContainer {
     OI.yButton.onTrue(Turn180Degrees);
     OI.LBButton.onTrue(driveTillDegrees);
     OI.RBButton.onTrue(balance);
-    OI.downDPButton2.onTrue(LeverStartPosition);
-    OI.aButton2.onTrue(ExtendorStartPosition);
-    OI.xButton2.whileTrue(intakeClaw);
-    OI.yButton2.whileTrue(outtakeClaw);
+    OI.downDPButton2.whileTrue(ManualLeverDOWN);
+    OI.upDPButton2.whileTrue(ManualLeverUP);
+    OI.aButton2.onTrue(ExtendOut);
+    OI.bButton2.onTrue(ExtendIn);
+    OI.xButton2.whileTrue(outtakeClaw);
+    OI.yButton2.whileTrue(intakeClaw);
+
     
   }
 
