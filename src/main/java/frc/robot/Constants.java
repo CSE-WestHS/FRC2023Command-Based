@@ -18,8 +18,8 @@ package frc.robot;
  */
 public final class Constants {
    //#region Ports
-    public static final int EXTENDORMOTORPORT = 5;
-    public static final int CRANEMOTORPORT = 6;
+    public static final int EXTENDORMOTORPORT = 6;
+    public static final int CRANEMOTORPORT = 1;
     public static final int CLAWMOTORPORT = 7;
     public static final int CLAWTWOMOTORPORT = 8;
     //#endregion
@@ -33,14 +33,14 @@ public final class Constants {
     public static final double MINAIM = 0.05;
     //#endregion
     //#region OI Constants
-    public static final int A_BUTTONPORT = 0;
-    public static final int B_BUTTONPORT = 1;
-    public static final int X_BUTTONPORT = 2;
-    public static final int Y_BUTTONPORT = 3;
-    public static final int LB_BUTTONPORT = 4;
-    public static final int RB_BUTTONPORT = 5;
-    public static final int BACK_BUTTONPORT = 6;
-    public static final int START_BUTTONPORT = 7;
+    public static final int A_BUTTONPORT = 1;
+    public static final int B_BUTTONPORT = 2;
+    public static final int X_BUTTONPORT = 3;
+    public static final int Y_BUTTONPORT = 4;
+    public static final int LB_BUTTONPORT = 5;
+    public static final int RB_BUTTONPORT = 6;
+    public static final int BACK_BUTTONPORT = 7;
+    public static final int START_BUTTONPORT = 8;
     public static final int DP_UP_BUTTONPORT = 0;
     public static final int DP_RIGHT_BUTTONPORT = 90;
     public static final int DP_DOWN_BUTTONPORT = 180;

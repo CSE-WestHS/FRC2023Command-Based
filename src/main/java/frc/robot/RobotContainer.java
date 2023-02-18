@@ -91,8 +91,8 @@ public class RobotContainer {
     OI.RBButton.onTrue(balance);
     OI.downDPButton2.whileTrue(ManualLeverDOWN);
     OI.upDPButton2.whileTrue(ManualLeverUP);
-    OI.aButton2.onTrue(ExtendOut);
-    OI.bButton2.onTrue(ExtendIn);
+    OI.aButton2.whileTrue(ExtendOut);
+    OI.bButton2.whileTrue(ExtendIn);
     OI.xButton2.whileTrue(outtakeClaw);
     OI.yButton2.whileTrue(intakeClaw);
 
