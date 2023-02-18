@@ -28,6 +28,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public final NavchipManager navchipManager = new NavchipManager();
+  public final LimitSensors sensors = new LimitSensors();
 
   //
   
