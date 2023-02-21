@@ -53,7 +53,7 @@ public class RobotContainer {
   // command to bring lever to its starting position
   private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, Constants.LEVERSTARTPOSITION);
   private final RunLever ManualLeverUP = new RunLever(leverSubsystem, false, false);
-  private final RunLever ManualLeverDOWN = new RunLever(leverSubsystem, true, sensors.CraneSwitched());
+  private final RunLever ManualLeverDOWN = new RunLever(leverSubsystem, true, sensors.CraneSwitchedFront());
   // command to bring Extendor to its starting position
   private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,Constants.EXTENDORSTARTPOSITION);
   private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false);
