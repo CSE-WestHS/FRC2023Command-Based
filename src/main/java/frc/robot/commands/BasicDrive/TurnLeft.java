@@ -1,6 +1,7 @@
 package frc.robot.commands.BasicDrive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.NavchipManager;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,8 +40,8 @@ public class TurnLeft extends CommandBase {
     SmartDashboard.putNumber("getYaw", currentYaw);
     desiredYaw = currentYaw - degrees;
     // used to account for sign change of yaw after it reaches -180*
-    if (desiredYaw < -180) {
-      double yawDifference = -(desiredYaw + 180);
+    if (desiredYaw < -Constants.DISIREDPITCH) {
+      double yawDifference = -(desiredYaw + Constants.DISIREDPITCH);
       desiredYaw = 180 - yawDifference;
     }
     SmartDashboard.putNumber("Desired Yaw", desiredYaw);

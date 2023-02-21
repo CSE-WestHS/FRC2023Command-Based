@@ -2,6 +2,7 @@ package frc.robot.commands.BalanceSteps;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.NavchipManager;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveTillDegrees extends CommandBase {
@@ -51,7 +52,7 @@ public class DriveTillDegrees extends CommandBase {
         // finished when robot is on ramp and NavChip reads that it is tilted.
         // number should be changed to match tests
         System.out.print("Robot on Ramp");
-        return pitch >= 12 || pitch <= -12;
+        return pitch >= Constants.RAMPPITCH || pitch <= -Constants.RAMPPITCH;
 
     }
 }
