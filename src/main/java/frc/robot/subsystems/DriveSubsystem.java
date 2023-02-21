@@ -32,10 +32,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.clearFaults();
     m_rearRight.clearFaults();
 
-    m_frontLeft.setSmartCurrentLimit(Constants.smartCurrentLimit);
-    m_rearLeft.setSmartCurrentLimit(Constants.smartCurrentLimit);
-    m_frontRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
-    m_rearRight.setSmartCurrentLimit(Constants.smartCurrentLimit);
+    m_frontLeft.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
+    m_rearLeft.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
+    m_frontRight.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
+    m_rearRight.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
 
     m_leftGroup.setInverted(false);
     m_rightGroup.setInverted(true);

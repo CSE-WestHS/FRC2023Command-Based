@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class OI {
 
   //Creates Xbox Controller
-  public static XboxController noCommandController = new XboxController(0);
-  public static CommandXboxController Controller = new CommandXboxController(0);
+  public static XboxController noCommandController = new XboxController(Constants.CONTROLLERPORT);
+  public static CommandXboxController Controller = new CommandXboxController(Constants.CONTROLLERPORT);
   
   //for use when we don't want to bind a button to a command
   
