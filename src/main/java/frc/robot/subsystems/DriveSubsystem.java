@@ -7,6 +7,9 @@ import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -24,8 +27,19 @@ public class DriveSubsystem extends SubsystemBase {
   private final RelativeEncoder rrEncoder = m_rearRight.getEncoder();
 
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftGroup, m_rightGroup);
+  private final NavchipManager NAV;
+  private final DifferentialDriveOdometry odometry;
+  private final PIDController leftController = new PIDController(1,0,0);
+  private final PIDController rightController = new PIDController(1,0,0);
 
-  public DriveSubsystem() {
+  private final DifferentialDriveKinematics m_kinematics =
+  new DifferentialDriveKinematics(Constants.TRACKWIDTH);
+
+  public DriveSubsystem(NavchipManager NAV) {
+
+    this.NAV = NAV;
+    odometry = new DifferentialDriveOdometry
+    (NAV.getRotation2d(), flEncoder.getPosition(), frEncoder.getPosition());
 
     m_frontLeft.clearFaults();
     m_rearLeft.clearFaults();
@@ -50,7 +64,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // sets the speed of both sides to the specific speed
   public void setSpeed(double leftSpeed, double rightSpeed) {
-    
+
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
 
@@ -79,11 +93,14 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.stopMotor();
     m_rearRight.stopMotor();
   }
-  public void runMotor(double spd){
+
+  public void runMotor(double spd) {
     m_rearRight.set(spd);
   }
+
   @Override
-  public void periodic(){
+  public void periodic() {
     m_drive.feedWatchdog();
+    odometry.update(NAV.getRotation2d(), flEncoder.getPosition(), frEncoder.getPosition());
   }
 }

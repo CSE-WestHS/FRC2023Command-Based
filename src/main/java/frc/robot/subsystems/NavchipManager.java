@@ -2,6 +2,8 @@ package frc.robot.subsystems; // Uncomment in implementation
 
 import com.kauailabs.navx.frc.AHRS;
 import java.util.Timer;
+
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.SPI;
 import java.time.Instant;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,7 +36,9 @@ public class NavchipManager extends SubsystemBase{
         lastVelocity = (float) 0.0;
         // Uses the given AHRS if one is provided
     }
-
+    public Rotation2d getRotation2d(){
+        return ahrs.getRotation2d();
+    }
     public float getYaw() {
         // Pitch of gyroscope in degrees
         return ahrs.getYaw();

@@ -26,8 +26,8 @@ import frc.robot.subsystems.NavchipManager;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public final NavchipManager navchipManager = new NavchipManager();
+  private final DriveSubsystem DriveSubsystem = new DriveSubsystem(navchipManager);
 
   //
   
