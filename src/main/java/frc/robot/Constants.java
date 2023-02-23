@@ -25,6 +25,7 @@ public final class Constants {
     //#endregion
     //#region DriveSubsystem Constants
     public static final int SMARTCURRENTLIMIT = 40;
+    public static final int CLAWCURRENTLIMIT = 15;
     public static final double MAXSPEED = 0.5;
     //#endregion
     //#region Balance Constants
@@ -49,7 +50,7 @@ public final class Constants {
     //#region Crane Constants
     public static final double EXTENDORSPEED = 0.4;
     public static final double LEVERSPEED = 0.4;
-    public static final double CLAWSPEED = 1;
+    public static final double CLAWSPEED = 0.5;
     public static final double CLAWTIME = 3.0;
     public static final double LEVERSTARTPOSITION = 0;
     public static final double EXTENDORSTARTPOSITION = 0;

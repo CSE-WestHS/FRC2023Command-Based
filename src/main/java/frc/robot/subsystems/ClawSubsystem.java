@@ -14,18 +14,21 @@ public class ClawSubsystem extends SubsystemBase {
   public ClawSubsystem() {
     clawMotor.clearFaults();
     clawMotor2.clearFaults();
-    clawMotor.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
-    clawMotor2.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
+    clawMotor.setSmartCurrentLimit(Constants.CLAWCURRENTLIMIT);
+    clawMotor2.setSmartCurrentLimit(Constants.CLAWCURRENTLIMIT);
     //mimics the other claw motor, as they do the same thing.
-    clawMotor2.follow(clawMotor, true);
+   // clawMotor2.follow(clawMotor, true);
     clawMotor.set(0);
   }
 
   public void runClaw(double speed){
     clawMotor.set(speed);
+    clawMotor2.set(-speed);
+
   }
 
   public void stopClaw(){
     clawMotor.set(0);
+    clawMotor2.set(0);
   }
 }
