@@ -41,16 +41,16 @@ public class Balance extends CommandBase {
         pitch = NavchipManager.getPitch();
         currentYaw = NavchipManager.getYaw();
         // if robot isn't level
-        if (pitch >= 3 || pitch <= -3) {
+        if (pitch >= Constants.LEVELPITCH || pitch <= -Constants.LEVELPITCH) {
             //Reset timer
             Timer.reset();
             Timer.stop();
             //Figure out speed at which to drive
-            double driveAdj = pitch * Constants.distanceMult;
+            double driveAdj = pitch * Constants.DISTANCEMULT;
             double steerAdj = 0.0;
             //Figure out how much to turn
-            if (currentYaw >= desiredYaw + 5 || currentYaw <= desiredYaw - 5) {
-                steerAdj = currentYaw * Constants.steerMult;
+            if (currentYaw >= desiredYaw + Constants.YAWTHRESHOLD || currentYaw <= desiredYaw - Constants.YAWTHRESHOLD) {
+                steerAdj = currentYaw * Constants.STEERMULT;
             }
 
             //set speeds
@@ -60,7 +60,7 @@ public class Balance extends CommandBase {
         }
 
         // if robot is level
-        else if (pitch <= 2 && pitch >= -2) {
+        else{
             DriveSubsystem.stopWheels();
             Timer.start();
         }
@@ -80,7 +80,7 @@ public class Balance extends CommandBase {
     public boolean isFinished() {
 
         // end if NavChip is level and has stayed level for a period of time
-        boolean isLevel = pitch <= 3 && pitch >= -3;
-        return isLevel && Timer.get() > 3.0;
+        boolean isLevel = pitch <= Constants.LEVELPITCH && pitch >= -Constants.LEVELPITCH;
+        return isLevel && Timer.get() > Constants.LEVELTIME;
     }
 }

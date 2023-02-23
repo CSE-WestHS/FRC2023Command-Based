@@ -17,9 +17,32 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int smartCurrentLimit = 40;
-    public static final double kMaxSpeed = 0.5;
-    public static final double distanceMult = 0.035;
-    public static final double steerMult = 0.01;
-    public static final double minAim = 0.05;
+    public static final int SMARTCURRENTLIMIT = 40;
+    public static final double KMAXSPEED = 0.5;
+    public static final double DISTANCEMULT = 0.035;
+    public static final double STEERMULT = 0.01;
+    public static final double MINAIM = 0.05;
+
+    public static final double LEVELPITCH = 3;
+    public static final double YAWTHRESHOLD = 5;
+    public static final double RAMPPITCH = 12;
+    public static final double LEVELTIME = 3.0;
+    
+    public static final int FRONTLEFTID = 1;
+    public static final int REARLEFTID = 2;
+    public static final int FRONTRIGHTID = 3;
+    public static final int REARRIGHTID = 4;
+    public static final int ENCODERSTARTINGPOSITION = 0;
+    public static final int ENCODERRESETINGPOSITION = 0;
+    public static final int CONTROLLERPORT = 0;
+    
+    
 }
+
+
+
+
+
+
+
+
