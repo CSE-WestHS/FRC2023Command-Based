@@ -43,9 +43,9 @@ public class TurnRight extends CommandBase {
     SmartDashboard.putNumber("getYaw", currentYaw);
     desiredYaw = currentYaw + degrees;
     // used to account for sign change of yaw after it reaches 180*
-    if (desiredYaw > Constants.DISIREDYAW) {
-      double yawDifference = desiredYaw - Constants.DISIREDYAW;
-      desiredYaw = -(Constants.DISIREDYAW - yawDifference);
+    if (desiredYaw > 180) {
+      double yawDifference = desiredYaw - 180;
+      desiredYaw = -(180 - yawDifference);
     }
     SmartDashboard.putNumber("Desired Yaw", desiredYaw);
   }

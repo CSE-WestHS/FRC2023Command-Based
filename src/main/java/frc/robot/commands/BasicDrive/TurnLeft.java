@@ -40,8 +40,8 @@ public class TurnLeft extends CommandBase {
     SmartDashboard.putNumber("getYaw", currentYaw);
     desiredYaw = currentYaw - degrees;
     // used to account for sign change of yaw after it reaches -180*
-    if (desiredYaw < -Constants.DISIREDPITCH) {
-      double yawDifference = -(desiredYaw + Constants.DISIREDPITCH);
+    if (desiredYaw < -180) {
+      double yawDifference = -(desiredYaw + 180);
       desiredYaw = 180 - yawDifference;
     }
     SmartDashboard.putNumber("Desired Yaw", desiredYaw);
