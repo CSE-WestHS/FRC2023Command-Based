@@ -10,10 +10,10 @@ import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private final CANSparkMax m_frontLeft = new CANSparkMax(1, MotorType.kBrushless);
-  private final CANSparkMax m_rearLeft = new CANSparkMax(2, MotorType.kBrushless);
+  private final CANSparkMax m_frontLeft = new CANSparkMax(2, MotorType.kBrushless);
+  private final CANSparkMax m_rearLeft = new CANSparkMax(4, MotorType.kBrushless);
   private final CANSparkMax m_frontRight = new CANSparkMax(3, MotorType.kBrushless);
-  private final CANSparkMax m_rearRight = new CANSparkMax(4, MotorType.kBrushless);
+  private final CANSparkMax m_rearRight = new CANSparkMax(5, MotorType.kBrushless);
   private final MotorControllerGroup m_leftGroup = new MotorControllerGroup(m_frontLeft, m_rearLeft);
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_frontRight, m_rearRight);
 
@@ -36,7 +36,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
     m_rearRight.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
 
-    m_leftGroup.setInverted(false);
+    m_leftGroup.setInverted(true);
     m_rightGroup.setInverted(true);
 
     flEncoder.setPosition(0);

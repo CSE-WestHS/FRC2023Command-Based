@@ -14,6 +14,10 @@ public class ExtendorSubsystem extends SubsystemBase {
     extendorMotor.clearFaults();
     extendorMotor.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
     extendorMotor.set(0);
+    // Second layer to prevent issues, should trip before distance sensor
+    final double ENCODER_MAXIMUM;
+    final double ENCODER_MINIMUM;
+
   }
 
   public void setSpeed(double speed){

@@ -29,9 +29,13 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public final NavchipManager navchipManager = new NavchipManager();
+
+  public final LimitSensors sensors = new LimitSensors();
+
   private final ClawSubsystem clawSubsystem = new ClawSubsystem();
   private final ExtendorSubsystem extendorSubsystem = new ExtendorSubsystem();
   private final LeverSubsystem leverSubsystem = new LeverSubsystem();
+
 
   // basic drive commands
   private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
@@ -48,8 +52,8 @@ public class RobotContainer {
 
   // command to bring lever to its starting position
   private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, Constants.LEVERSTARTPOSITION);
-  private final RunLever ManualLeverUP = new RunLever(leverSubsystem, false);
-  private final RunLever ManualLeverDOWN = new RunLever(leverSubsystem, true);
+  private final RunLever ManualLeverUP = new RunLever(leverSubsystem, false, sensors);
+  private final RunLever ManualLeverDOWN = new RunLever(leverSubsystem, true, sensors);
   // command to bring Extendor to its starting position
   private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,Constants.EXTENDORSTARTPOSITION);
   private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false);
@@ -91,8 +95,8 @@ public class RobotContainer {
     OI.RBButton.onTrue(balance);
     OI.downDPButton2.whileTrue(ManualLeverDOWN);
     OI.upDPButton2.whileTrue(ManualLeverUP);
-    OI.aButton2.onTrue(ExtendOut);
-    OI.bButton2.onTrue(ExtendIn);
+    OI.aButton2.whileTrue(ExtendOut);
+    OI.bButton2.whileTrue(ExtendIn);
     OI.xButton2.whileTrue(outtakeClaw);
     OI.yButton2.whileTrue(intakeClaw);
 
