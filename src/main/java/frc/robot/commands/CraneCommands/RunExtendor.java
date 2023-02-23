@@ -4,6 +4,7 @@ import frc.robot.subsystems.ExtendorSubsystem;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.RobotContainer;
 
 /** An example command that uses an example subsystem. */
 public class RunExtendor extends CommandBase {
@@ -32,6 +33,7 @@ public class RunExtendor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     extendor.setSpeed(Constants.LEVERSPEED);
     if(invert){extendor.setSpeed(-Constants.EXTENDORSPEED);}
   }
