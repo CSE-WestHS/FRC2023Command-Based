@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.BasicDrive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
@@ -17,8 +17,8 @@ public class Dual_Joysticks extends CommandBase {
   @Override
   public void execute() {
     
-    double leftSpeed = -OI.Controller.getLeftY() * Constants.KMAXSPEED;
-    double rightSpeed = -OI.Controller.getRightY() * Constants.KMAXSPEED;
+    double leftSpeed = -OI.DriveController.getLeftY() * Constants.MAXSPEED;
+    double rightSpeed = -OI.DriveController.getRightY() * Constants.MAXSPEED;
     DriveSubsystem.setSpeed(leftSpeed, rightSpeed);
   }
 
