@@ -10,10 +10,10 @@ import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private final CANSparkMax m_frontLeft = new CANSparkMax(2, MotorType.kBrushless);
-  private final CANSparkMax m_rearLeft = new CANSparkMax(4, MotorType.kBrushless);
-  private final CANSparkMax m_frontRight = new CANSparkMax(3, MotorType.kBrushless);
-  private final CANSparkMax m_rearRight = new CANSparkMax(5, MotorType.kBrushless);
+  private final CANSparkMax m_frontLeft = new CANSparkMax(Constants.FRONTLEFTID, MotorType.kBrushless);
+  private final CANSparkMax m_rearLeft = new CANSparkMax(Constants.REARLEFTID, MotorType.kBrushless);
+  private final CANSparkMax m_frontRight = new CANSparkMax(Constants.FRONTRIGHTID, MotorType.kBrushless);
+  private final CANSparkMax m_rearRight = new CANSparkMax(Constants.REARRIGHTID, MotorType.kBrushless);
   private final MotorControllerGroup m_leftGroup = new MotorControllerGroup(m_frontLeft, m_rearLeft);
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_frontRight, m_rearRight);
 
@@ -39,10 +39,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_leftGroup.setInverted(true);
     m_rightGroup.setInverted(true);
 
-    flEncoder.setPosition(0);
-    frEncoder.setPosition(0);
-    rlEncoder.setPosition(0);
-    rrEncoder.setPosition(0);
+    flEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
+    frEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
+    rlEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
+    rrEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
 
     stopWheels();
   }
@@ -55,10 +55,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   // resets the position of the inputted encoder
   public void resetEncoders() {
-    flEncoder.setPosition(0);
-    frEncoder.setPosition(0);
-    rlEncoder.setPosition(0);
-    rrEncoder.setPosition(0);
+    flEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
+    frEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
+    rlEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
+    rrEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
   }
 
   // returns the value of the position of the encoder in rotations.
