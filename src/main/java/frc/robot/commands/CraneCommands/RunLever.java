@@ -7,25 +7,24 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.LimitSensors;
+import frc.robot.OI;
 //import frc.robot.RobotContainer;
 
 /** An example command that uses an example subsystem. */
 public class RunLever extends CommandBase {
 
   private final LeverSubsystem lever;
-  private final boolean invert;
+  private boolean invert;
   private boolean hitLimit;
   LimitSensors sensors;
   /**
    * Command that runs the claw motors for a short amount of time, releasing what ever object 
    *
    * @param claw The subsystem used by this command.
-   * @param invert whether motor intakes object or spits it out.
    */
-  public RunLever(LeverSubsystem lever, boolean invert, LimitSensors sensors) {
+  public RunLever(LeverSubsystem lever, LimitSensors sensors) {
     // Limit switch associated goes in last boolean, if none set it to false.
     this.lever = lever;
-    this.invert = invert;
     this.sensors = sensors;
     //this.hitLimit = hitLimit;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -41,6 +40,7 @@ public class RunLever extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    invert = OI.CraneController.getY() >= 0.1;
     if (invert){
       hitLimit = sensors.CraneSwitchedFront();
     } else{
@@ -48,8 +48,7 @@ public class RunLever extends CommandBase {
     }
     if (!hitLimit){
       //SmartDashboard.putBoolean("Tripped", false);
-      lever.setSpeed(Constants.LEVERSPEED);
-      if(invert){lever.setSpeed(-Constants.LEVERSPEED);}
+      lever.setSpeed(OI.CraneController.getY() * Constants.LEVERSPEED);
   
     } else {
 

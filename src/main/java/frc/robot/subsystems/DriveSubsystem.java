@@ -52,6 +52,9 @@ public class DriveSubsystem extends SubsystemBase {
     
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
+  public void arcadeDrive(double speed, double turn){
+    m_drive.arcadeDrive(speed, turn);
+  }
 
   // resets the position of the inputted encoder
   public void resetEncoders() {

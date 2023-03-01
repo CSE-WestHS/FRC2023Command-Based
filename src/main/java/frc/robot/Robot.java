@@ -106,7 +106,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if(OI.DriveController.getBackButtonPressed() ||OI.CraneController.getBackButtonPressed()){
+    if(OI.DriveController.getRawButton(1) ||OI.CraneController.getRawButton(1)){
       CommandScheduler.getInstance().cancelAll();
     }
 

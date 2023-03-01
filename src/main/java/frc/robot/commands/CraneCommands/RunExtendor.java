@@ -34,7 +34,7 @@ public class RunExtendor extends CommandBase {
   @Override
   public void execute() {
     
-    extendor.setSpeed(Constants.LEVERSPEED);
+    extendor.setSpeed(Constants.EXTENDORSPEED);
     if(invert){extendor.setSpeed(-Constants.EXTENDORSPEED);}
   }
 
