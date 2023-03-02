@@ -39,21 +39,15 @@ public class RobotContainer {
 
   // basic drive commands
   private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
-  private final DriveForward DriveFiveRotations = new DriveForward(DriveSubsystem, 5.0, 0.5);
-  private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem, 3.0, 0.25);
-  private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, 90, 0.5);
-  private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, navchipManager, 180, 0.3);
   
   // balance commands
-  private final DriveTillDegrees driveTillDegrees = new DriveTillDegrees(DriveSubsystem, navchipManager);
   private final Balance balance = new Balance(DriveSubsystem, navchipManager);
 
   // crane commands
 
   // command to bring lever to its starting position
   private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, Constants.LEVERSTARTPOSITION);
-  private final RunLever ManualLeverUP = new RunLever(leverSubsystem, sensors);
-  private final RunLever ManualLeverDOWN = new RunLever(leverSubsystem, sensors);
+  private final RunLever ManualLever = new RunLever(leverSubsystem, sensors);
   // command to bring Extendor to its starting position
   private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,Constants.EXTENDORSTARTPOSITION);
   private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false);
@@ -87,18 +81,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    OI.aButton.onTrue(DriveFiveRotations);
-    OI.bButton.onTrue(DriveThreeRotoations);
-    OI.xButton.onTrue(Turn90Degrees);
-    OI.yButton.onTrue(Turn180Degrees);
-    OI.LBButton.onTrue(driveTillDegrees);
-    OI.RBButton.onTrue(balance);
-    OI.downDPButton2.whileTrue(ManualLeverDOWN);
-    OI.upDPButton2.whileTrue(ManualLeverUP);
-    OI.aButton2.whileTrue(ExtendOut);
-    OI.bButton2.whileTrue(ExtendIn);
-    OI.xButton2.whileTrue(outtakeClaw);
-    OI.yButton2.whileTrue(intakeClaw);
+    OI.balanceButton.onTrue(balance);
+    OI.leverMoveButton.whileTrue(ManualLever);
+    OI.extendorOutButton.whileTrue(ExtendOut);
+    OI.extendorInButton.whileTrue(ExtendIn);
+    OI.clawReleaseButton.whileTrue(outtakeClaw);
+    OI.clawGrabButton.whileTrue(intakeClaw);
 
     
   }

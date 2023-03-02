@@ -18,7 +18,7 @@ public class Dual_Joysticks extends CommandBase {
   public void execute() {
     
     double speed = -OI.DriveController.getY() * Constants.MAXSPEED;
-    double turn = OI.DriveController.getX() * Constants.MAXSPEED;
+    double turn = -OI.DriveController.getX() * Constants.MAXSPEED;
     DriveSubsystem.arcadeDrive(speed, turn);
   }
 

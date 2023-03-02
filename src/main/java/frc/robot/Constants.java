@@ -28,10 +28,10 @@ public final class Constants {
     
    //#region Ports
    public static final int CONTROLLERPORT = 0;
-   public static final int FRONTLEFTID = 5;
-   public static final int REARLEFTID = 2;
+   public static final int FRONTLEFTID = 2;
+   public static final int REARLEFTID = 4;
    public static final int FRONTRIGHTID = 3;
-   public static final int REARRIGHTID = 4;
+   public static final int REARRIGHTID = 5;
     public static final int EXTENDORMOTORPORT = 6;
     public static final int CRANEMOTORPORT = 1;
     public static final int CLAWMOTORPORT = 7;
@@ -54,6 +54,7 @@ public final class Constants {
     public static final double LEVELTIME = 3.0;
     //#endregion
     //#region OI Constants
+    //XBOX CONTROLLER CONSTANTS
     public static final int A_BUTTONPORT = 1;
     public static final int B_BUTTONPORT = 2;
     public static final int X_BUTTONPORT = 3;
@@ -66,6 +67,15 @@ public final class Constants {
     public static final int DP_RIGHT_BUTTONPORT = 90;
     public static final int DP_DOWN_BUTTONPORT = 180;
     public static final int DP_LEFT_BUTTONPORT = 270;
+
+    //JOYSTICK CONTROLLER CONSTANTS
+    public static final int LEVER_MOVE_BUTTONPORT = 2;
+    public static final int CLAW_GRAB_BUTTONPORT = 3;
+    public static final int CLAW_RELEASE_BUTTONPORT = 4;
+    public static final int EXTENDOR_IN_POV = 180;
+    public static final int EXTENDOR_OUT_POV = 0;
+    public static final int BALANCE_BUTTON = 14;
+
     //#endregion
     //#region Crane Constants
     public static final double EXTENDORSPEED = 0.7;

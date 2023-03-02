@@ -40,7 +40,7 @@ public class RunLever extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    invert = OI.CraneController.getY() >= 0.1;
+    invert = OI.CraneController.getY() >= 0;
     if (invert){
       hitLimit = sensors.CraneSwitchedFront();
     } else{
