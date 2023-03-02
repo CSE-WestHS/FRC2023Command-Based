@@ -3,14 +3,17 @@ package frc.robot.commands.CraneCommands;
 import frc.robot.subsystems.LeverSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.LimitSensors;
 
 /** An example command that uses an example subsystem. */
 public class LeverToPosition extends CommandBase {
 
   private final LeverSubsystem lever;
-  private final double encoderEndPos;
+  private final LimitSensors sensors;
+  private final double limitEndPos;
   private final double startPos;
   private final boolean tooFar;
+  private boolean hitLimit;
 
   /**
    * Creates a new ExampleCommand.
@@ -18,13 +21,14 @@ public class LeverToPosition extends CommandBase {
    * @param driveSubsystem The subsystem used by this command.
    * @param encoderPos     The position on the encoder you wish to run a motor on.
    */
-  public LeverToPosition(LeverSubsystem lever, double encoderEndPos) {
+  public LeverToPosition(LeverSubsystem lever, LimitSensors sensors, double limitEndPos) {
     this.lever = lever;
-    this.encoderEndPos = encoderEndPos;
+    this.limitEndPos = limitEndPos;
+    this.sensors = sensors;
     // used for logic to determine weather the motor needs to run forwards or
     // backwards
     startPos = lever.getEncoderPosition();
-    tooFar = startPos > encoderEndPos;
+    tooFar = startPos > limitEndPos;
 
     addRequirements(lever);
   }
@@ -38,10 +42,16 @@ public class LeverToPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    hitLimit = sensors.CraneSwitchedBack();
     if (tooFar) {
-      lever.setSpeed(-Constants.LEVERSPEED);
-    } else {
-      lever.setSpeed(Constants.LEVERSPEED);
+      hitLimit = sensors.CraneSwitchedFront();
+    }
+    if (!hitLimit) {
+      if (tooFar) {
+        lever.setSpeed(-Constants.LEVERSPEED);
+      } else {
+        lever.setSpeed(Constants.LEVERSPEED);
+      }
     }
   }
 
@@ -54,10 +64,12 @@ public class LeverToPosition extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (tooFar) {
-      return lever.getEncoderPosition() <= encoderEndPos;
+    if (hitLimit) {
+      return true;
+    } else if (tooFar) {
+      return lever.getEncoderPosition() <= limitEndPos;
     } else {
-      return lever.getEncoderPosition() >= encoderEndPos;
+      return lever.getEncoderPosition() >= limitEndPos;
     }
   }
 }

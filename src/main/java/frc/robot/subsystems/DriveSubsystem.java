@@ -19,8 +19,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final RelativeEncoder flEncoder = m_frontLeft.getEncoder();
   private final RelativeEncoder frEncoder = m_frontRight.getEncoder();
-  private final RelativeEncoder rlEncoder = m_rearLeft.getEncoder();
-  private final RelativeEncoder rrEncoder = m_rearRight.getEncoder();
 
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftGroup, m_rightGroup);
 
@@ -39,10 +37,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_leftGroup.setInverted(true);
     m_rightGroup.setInverted(true);
 
+    flEncoder.setPositionConversionFactor(Constants.ENCODER_CONVERSION_FACTOR);
+    frEncoder.setPositionConversionFactor(Constants.ENCODER_CONVERSION_FACTOR);
+
     flEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
     frEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
-    rlEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
-    rrEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
 
     stopWheels();
   }
@@ -60,8 +59,6 @@ public class DriveSubsystem extends SubsystemBase {
   public void resetEncoders() {
     flEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
     frEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
-    rlEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
-    rrEncoder.setPosition(Constants.ENCODERRESETINGPOSITION);
   }
 
   // returns the value of the position of the encoder in rotations.
