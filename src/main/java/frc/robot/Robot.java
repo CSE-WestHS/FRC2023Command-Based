@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putBoolean("LimitSwitchf", m_robotContainer.sensors.CraneSwitchedFront());
     SmartDashboard.putBoolean("LimitSwitchb", m_robotContainer.sensors.CraneSwitchedBack());
-    SmartDashboard.putNumber("StringV", m_robotContainer.sensors.getPotVoltage());
+    SmartDashboard.putNumber("Extendor Position", m_robotContainer.sensors.GetExtendorPos());
 
   }
 
