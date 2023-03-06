@@ -80,7 +80,7 @@ public final class Constants {
     //#region Crane Constants
     public static final double EXTENDORSPEED = 0.7;
     public static final double LEVERSPEED = .75;
-    public static final double CLAWSPEED = 0.4;
+    public static final double CLAWSPEED = 0.6;
     public static final double CLAWTIME = 3.0;
     public static final double LEVERSTARTPOSITION = 0;
     public static final double EXTENDORSTARTPOSITION = 0;
