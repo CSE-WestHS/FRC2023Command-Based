@@ -40,13 +40,13 @@ public class RunLever extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    invert = OI.CraneController.getY() >= 0;
+    invert = -OI.CraneController.getY() <= 0;
     if (invert){
       hitLimit = sensors.CraneSwitchedFront();
     } else{
       hitLimit = sensors.CraneSwitchedBack();
     }
-    if (!hitLimit){
+   if (!hitLimit){
       //SmartDashboard.putBoolean("Tripped", false);
       lever.setSpeed(OI.CraneController.getY() * Constants.LEVERSPEED);
   
@@ -66,6 +66,6 @@ public class RunLever extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return hitLimit;
+    return false;
   }
 }

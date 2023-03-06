@@ -69,7 +69,7 @@ public final class Constants {
     public static final int DP_LEFT_BUTTONPORT = 270;
 
     //JOYSTICK CONTROLLER CONSTANTS
-    public static final int LEVER_MOVE_BUTTONPORT = 2;
+    public static final int LEVER_MOVE_BUTTONPORT = 1;
     public static final int CLAW_GRAB_BUTTONPORT = 3;
     public static final int CLAW_RELEASE_BUTTONPORT = 4;
     public static final int EXTENDOR_IN_POV = 180;
