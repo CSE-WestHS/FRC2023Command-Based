@@ -36,6 +36,7 @@ public class RunExtendor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
     boolean hitLimit;
     hitLimit = false;
     if (invert ^ Constants.EXTENDOR_SENSOR_INVERTED){
@@ -49,6 +50,7 @@ public class RunExtendor extends CommandBase {
     }
     if (!hitLimit){
     extendor.setSpeed(Constants.LEVERSPEED);
+
     if(invert){extendor.setSpeed(-Constants.EXTENDORSPEED);}
     }
   }
