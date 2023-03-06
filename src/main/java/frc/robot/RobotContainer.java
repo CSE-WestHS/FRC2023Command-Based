@@ -50,8 +50,8 @@ public class RobotContainer {
   private final RunLever ManualLever = new RunLever(leverSubsystem, sensors);
   // command to bring Extendor to its starting position
   private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,Constants.EXTENDORSTARTPOSITION);
-  private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false);
-  private final RunExtendor ExtendIn = new RunExtendor(extendorSubsystem, true);
+  private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false, sensors);
+  private final RunExtendor ExtendIn = new RunExtendor(extendorSubsystem, true, sensors);
 
   // commands to run the claw
   private final DropObject dropObject = new DropObject(clawSubsystem);

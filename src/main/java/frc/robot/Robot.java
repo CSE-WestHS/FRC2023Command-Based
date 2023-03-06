@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    m_robotContainer.navchipManager.calibrate();
 
   }
 
@@ -61,6 +62,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putBoolean("LimitSwitchf", m_robotContainer.sensors.CraneSwitchedFront());
     SmartDashboard.putBoolean("LimitSwitchb", m_robotContainer.sensors.CraneSwitchedBack());
+    SmartDashboard.putNumber("Extendor Position", m_robotContainer.sensors.GetExtendorPos());
 
   }
 

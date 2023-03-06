@@ -85,6 +85,20 @@ public final class Constants {
     public static final double LEVERSTARTPOSITION = 0;
     public static final double EXTENDORSTARTPOSITION = 0;
     //#endregion
+    ////#region LimitSensors
+    public static final int DIO_BACK = 1;
+    public static final int DIO_FRONT = 0;
+    // Is that a JoJo reference?
+    public static final int ANALOG_STRINGPOT = 0;
+    // Stands for String Potentiometer 
+    public static final double EXTENDOR_MAX = 48.00;
+    public static final double EXTENDOR_MIN = 0.0;
+    public static final double ANALOG_VOLTS_MIN = 0.0;
+    public static final double ANALOG_VOLTS_MAX = 5.0;
+
+
+
+    ////#endregion LimitSensors
 }
 
 
