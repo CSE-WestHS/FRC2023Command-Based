@@ -3,6 +3,11 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
 public class LimitSensors {
+    /**
+     * Handles the Analog and DIO ports of the robot. 
+     * Similar to OI in structure and utility. 
+     * 
+     * */
     DigitalInput CraneSwitchFront = new DigitalInput(Constants.DIO_FRONT);
     DigitalInput CraneSwitchBack = new DigitalInput(Constants.DIO_BACK);
     // ZA WARDO
