@@ -34,6 +34,9 @@ public class NavchipManager extends SubsystemBase{
         lastVelocity = (float) 0.0;
         // Uses the given AHRS if one is provided
     }
+    public void calibrate(){
+        ahrs.calibrate();
+    }
 
     public float getYaw() {
         // Pitch of gyroscope in degrees
@@ -43,12 +46,12 @@ public class NavchipManager extends SubsystemBase{
 
     public float getPitch() {
         // Yaw of gyroscope in degrees
-        return ahrs.getPitch();
+        return ahrs.getRoll();
     }
 
     public float getRoll() {
         // Roll
-        return ahrs.getRoll();
+        return ahrs.getPitch();
     }
 
     public float getVelocity(String axis) {
