@@ -1,6 +1,7 @@
 package frc.robot.commands.AutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.BasicDrive.DriveForward;
 import frc.robot.commands.CraneCommands.DropObject;
 import frc.robot.commands.CraneCommands.ExtendorToPosition;
 import frc.robot.commands.CraneCommands.LeverToPosition;
@@ -16,8 +17,10 @@ public class CubeScore extends SequentialCommandGroup{
     public CubeScore(DriveSubsystem drive, ClawSubsystem claw, ExtendorSubsystem extendor, LeverSubsystem lever, LimitSensors sensors){
         addCommands(
             new ExtendorToPosition(extendor, sensors, Constants.EXTENDORSTARTPOSITION),
-            new LeverToPosition(lever, sensors, Constants.LEVERSCOREPOSITION),
+            new LeverToPosition(lever, sensors, Constants.LEVEREXTENDORPOSITION),
             new ExtendorToPosition(extendor, sensors, Constants.EXTENDORSCOREPOSITION),
+            new LeverToPosition(lever, sensors, Constants.LEVERSCOREPOSITION),
+            new DriveForward(drive, 3, 0.5),
             new DropObject(claw),
             new ExtendorToPosition(extendor, sensors, Constants.EXTENDORSTARTPOSITION),
             new LeverToPosition(lever, sensors, Constants.LEVERSTARTPOSITION)

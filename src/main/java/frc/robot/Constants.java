@@ -87,7 +87,8 @@ public final class Constants {
     public static final double CLAWTIME = 3.0;
     public static final double LEVERSTARTPOSITION = 0;
     public static final double EXTENDORSTARTPOSITION = 1.0;
-    public static final double LEVERSCOREPOSITION = 5.0;
+    public static final double LEVEREXTENDORPOSITION = 55.0;
+    public static final double LEVERSCOREPOSITION = 95.0;
     public static final double EXTENDORSCOREPOSITION = 19.5;
     //#endregion
     ////#region LimitSensors
