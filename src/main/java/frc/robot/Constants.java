@@ -86,9 +86,9 @@ public final class Constants {
     public static final double CLAWSPEED = 0.6;
     public static final double CLAWTIME = 3.0;
     public static final double LEVERSTARTPOSITION = 0;
-    public static final double EXTENDORSTARTPOSITION = 0;
+    public static final double EXTENDORSTARTPOSITION = 1.0;
     public static final double LEVERSCOREPOSITION = 5.0;
-    public static final double EXTENDORSCOREPOSITION = 5.0;
+    public static final double EXTENDORSCOREPOSITION = 19.5;
     //#endregion
     ////#region LimitSensors
     public static final int DIO_BACK = 0;
