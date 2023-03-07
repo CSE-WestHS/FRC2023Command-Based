@@ -60,8 +60,8 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    SmartDashboard.putBoolean("LimitSwitchf", m_robotContainer.sensors.CraneSwitchedFront());
-    SmartDashboard.putBoolean("LimitSwitchb", m_robotContainer.sensors.CraneSwitchedBack());
+    SmartDashboard.putBoolean("LimitSwitchb", m_robotContainer.sensors.CraneSwitchedFront());
+    SmartDashboard.putBoolean("LimitSwitchf", m_robotContainer.sensors.CraneSwitchedBack());
     SmartDashboard.putNumber("Extendor Position", m_robotContainer.sensors.GetExtendorPos());
 
   }
