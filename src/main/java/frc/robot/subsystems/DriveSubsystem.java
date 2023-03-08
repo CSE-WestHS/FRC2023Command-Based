@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -33,6 +34,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearLeft.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
     m_frontRight.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
     m_rearRight.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
+
 
     m_leftGroup.setInverted(true);
     m_rightGroup.setInverted(true);
@@ -81,6 +83,7 @@ public class DriveSubsystem extends SubsystemBase {
   public void runMotor(double spd){
     m_rearRight.set(spd);
   }
+
   @Override
   public void periodic(){
     m_drive.feedWatchdog();

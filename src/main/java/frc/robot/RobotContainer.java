@@ -66,6 +66,7 @@ public class RobotContainer {
   private final DriveBackward SimpleAuto = new DriveBackward(DriveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED);
   private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
   private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
+  private final LeverToPosition testLever = new LeverToPosition(leverSubsystem, sensors, 0);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -92,7 +93,7 @@ public class RobotContainer {
     OI.extendorInButton.whileTrue(ExtendIn);
     OI.clawReleaseButton.whileTrue(outtakeClaw);
     OI.clawGrabButton.whileTrue(intakeClaw);
-
+    OI.autoTestButton.onTrue(scoreAndBalance);
     
   }
 

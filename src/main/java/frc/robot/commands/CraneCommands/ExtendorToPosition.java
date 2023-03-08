@@ -27,7 +27,7 @@ public class ExtendorToPosition extends CommandBase {
     this.sensors = sensors;
     // used for logic to determine weather the motor needs to run forwards or
     // backwards
-    startPos = sensors.getPotVoltage();
+    startPos = sensors.GetExtendorPos();
     tooFar = startPos > limitEndPos;
 
     addRequirements(extendor);
@@ -42,12 +42,22 @@ public class ExtendorToPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    hitLimit = sensors.CraneSwitchedBack() || sensors.CraneSwitchedFront();
+    boolean hitLimit;
+    hitLimit = false;
+    if (tooFar ^ Constants.EXTENDOR_SENSOR_INVERTED){
+      if (sensors.GetExtendorPos() > 20){
+        hitLimit = true;
+      }
+    }else {
+      if (sensors.GetExtendorPos() < 1){
+        hitLimit = true;
+      }
+    }
     if (!hitLimit) {
       if (tooFar) {
-        extendor.setSpeed(-Constants.EXTENDORSPEED);
-      } else {
         extendor.setSpeed(Constants.EXTENDORSPEED);
+      } else {
+        extendor.setSpeed(-Constants.EXTENDORSPEED);
       }
     }
   }
@@ -65,9 +75,9 @@ public class ExtendorToPosition extends CommandBase {
       return true;
     }
     if (tooFar) {
-      return sensors.getPotVoltage() <= limitEndPos;
+      return sensors.GetExtendorPos() <= limitEndPos;
     } else {
-      return sensors.getPotVoltage() >= limitEndPos;
+      return sensors.GetExtendorPos() >= limitEndPos;
     }
   }
 }

@@ -21,4 +21,5 @@ public class OI {
   static Trigger leverMoveButton = new JoystickButton(CraneController, Constants.LEVER_MOVE_BUTTONPORT);
   static Trigger extendorInButton = new POVButton(CraneController, Constants.EXTENDOR_IN_POV);
   static Trigger extendorOutButton = new POVButton(CraneController, Constants.EXTENDOR_OUT_POV);
+  static Trigger autoTestButton = new JoystickButton(DriveController, 15);
 }
