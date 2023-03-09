@@ -3,14 +3,17 @@ package frc.robot.commands.CraneCommands;
 import frc.robot.subsystems.ExtendorSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.LimitSensors;
 
 /** An example command that uses an example subsystem. */
 public class ExtendorToPosition extends CommandBase {
 
   private final ExtendorSubsystem extendor;
-  private final double encoderEndPos;
+  private final LimitSensors sensors;
+  private final double limitEndPos;
   private final double startPos;
   private final boolean tooFar;
+  private boolean hitLimit;
 
   /**
    * Creates a new ExampleCommand.
@@ -18,13 +21,14 @@ public class ExtendorToPosition extends CommandBase {
    * @param driveSubsystem The subsystem used by this command.
    * @param encoderPos     The position on the encoder you wish to run a motor on.
    */
-  public ExtendorToPosition(ExtendorSubsystem extendor, double encoderEndPos) {
+  public ExtendorToPosition(ExtendorSubsystem extendor, LimitSensors sensors, double limitEndPos) {
     this.extendor = extendor;
-    this.encoderEndPos = encoderEndPos;
+    this.limitEndPos = limitEndPos;
+    this.sensors = sensors;
     // used for logic to determine weather the motor needs to run forwards or
     // backwards
-    startPos = extendor.getEncoderPosition();
-    tooFar = startPos > encoderEndPos;
+    startPos = sensors.GetExtendorPos();
+    tooFar = startPos > limitEndPos;
 
     addRequirements(extendor);
   }
@@ -38,10 +42,23 @@ public class ExtendorToPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (tooFar) {
-      extendor.setSpeed(-Constants.EXTENDORSPEED);
-    } else {
-      extendor.setSpeed(Constants.EXTENDORSPEED);
+    boolean hitLimit;
+    hitLimit = false;
+    if (tooFar ^ Constants.EXTENDOR_SENSOR_INVERTED){
+      if (sensors.GetExtendorPos() > 20){
+        hitLimit = true;
+      }
+    }else {
+      if (sensors.GetExtendorPos() < 1){
+        hitLimit = true;
+      }
+    }
+    if (!hitLimit) {
+      if (tooFar) {
+        extendor.setSpeed(Constants.EXTENDORSPEED);
+      } else {
+        extendor.setSpeed(-Constants.EXTENDORSPEED);
+      }
     }
   }
 
@@ -54,10 +71,13 @@ public class ExtendorToPosition extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (hitLimit) {
+      return true;
+    }
     if (tooFar) {
-      return extendor.getEncoderPosition() <= encoderEndPos;
+      return sensors.GetExtendorPos() <= limitEndPos;
     } else {
-      return extendor.getEncoderPosition() >= encoderEndPos;
+      return sensors.GetExtendorPos() >= limitEndPos;
     }
   }
 }

@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BasicDrive.*;
+import frc.robot.commands.AutonomousCommands.AutoBalance;
 import frc.robot.commands.BalanceSteps.*;
 import frc.robot.commands.CraneCommands.*;
+import frc.robot.commands.AutonomousCommands.*;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExtendorSubsystem;
@@ -46,10 +48,12 @@ public class RobotContainer {
   // crane commands
 
   // command to bring lever to its starting position
-  private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, Constants.LEVERSTARTPOSITION);
+  private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, sensors, Constants.LEVERSTARTPOSITION);
   private final RunLever ManualLever = new RunLever(leverSubsystem, sensors);
   // command to bring Extendor to its starting position
-  private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem,Constants.EXTENDORSTARTPOSITION);
+
+  private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem, sensors, Constants.EXTENDORSTARTPOSITION);
+
   private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false, sensors);
   private final RunExtendor ExtendIn = new RunExtendor(extendorSubsystem, true, sensors);
 
@@ -60,7 +64,10 @@ public class RobotContainer {
 
   // auto commands
   private final AutoBalance autoBalance = new AutoBalance(DriveSubsystem, navchipManager);
-
+  private final DriveBackward SimpleAuto = new DriveBackward(DriveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED);
+  private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
+  private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
+  private final LeverToPosition testLever = new LeverToPosition(leverSubsystem, sensors, 0);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -87,7 +94,6 @@ public class RobotContainer {
     OI.extendorInButton.whileTrue(ExtendIn);
     OI.clawReleaseButton.whileTrue(outtakeClaw);
     OI.clawGrabButton.whileTrue(intakeClaw);
-
     
   }
 
