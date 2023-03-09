@@ -38,13 +38,13 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_leftGroup.setInverted(true);
     m_rightGroup.setInverted(true);
-
+    /* 
     flEncoder.setPositionConversionFactor(Constants.ENCODER_CONVERSION_FACTOR);
     frEncoder.setPositionConversionFactor(Constants.ENCODER_CONVERSION_FACTOR);
 
     flEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
     frEncoder.setPosition(Constants.ENCODERSTARTINGPOSITION);
-
+      */
     stopWheels();
   }
 
