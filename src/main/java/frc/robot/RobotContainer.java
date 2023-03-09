@@ -53,6 +53,7 @@ public class RobotContainer {
   // command to bring Extendor to its starting position
 
   private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem, sensors, Constants.EXTENDORSTARTPOSITION);
+
   private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false, sensors);
   private final RunExtendor ExtendIn = new RunExtendor(extendorSubsystem, true, sensors);
 
@@ -93,7 +94,6 @@ public class RobotContainer {
     OI.extendorInButton.whileTrue(ExtendIn);
     OI.clawReleaseButton.whileTrue(outtakeClaw);
     OI.clawGrabButton.whileTrue(intakeClaw);
-    OI.autoTestButton.onTrue(scoreAndBalance);
     
   }
 
