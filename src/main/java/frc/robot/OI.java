@@ -1,30 +1,25 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 public class OI {
 
-  //Creates Xbox Controller
-  public static XboxController noCommandController = new XboxController(Constants.CONTROLLERPORT);
-  public static CommandXboxController Controller = new CommandXboxController(Constants.CONTROLLERPORT);
-  
-  //for use when we don't want to bind a button to a command
-  
-  // button bindings for Command use
-  static Trigger aButton = Controller.a(); // a button
-  static Trigger bButton = Controller.b(); // b button
-  static Trigger xButton = Controller.x(); // x button
-  static Trigger yButton = Controller.y(); // y button
-  static Trigger startButton = Controller.start(); // start button
-  static Trigger backButton = Controller.back(); // back button - being used to cancel commands, can be changed.
-  static Trigger LBButton = Controller.leftBumper(); // left bumper
-  static Trigger RBButton = Controller.rightBumper(); // right bumper
-  static Trigger downDPButton = Controller.povDown(); // down on D-Pad
-  static Trigger upDPButton = Controller.povUp(); // up on D-Pad
-  static Trigger leftDPButton = Controller.povLeft(); // left on D-Pad
-  static Trigger rightDPButton = Controller.povRight(); // right on D-Pad
-  static Trigger centerDPButton = Controller.povCenter(); // center on D-Pad
 
+
+  //creates Xbox Controllers for robot control
+  public static Joystick DriveController = new Joystick(0);
+  public static Joystick CraneController = new Joystick(1);
+  // button bindings for Command use for DriveController
+  //should be renamed to fit the purpose of the command it works with
+  static Trigger balanceButton = new JoystickButton(CraneController, Constants.BALANCE_BUTTON);
+  //button bindings for Command use on CraneController
+  //should be renamed to fit the purpose of the command it works with
+  static Trigger clawGrabButton = new JoystickButton(CraneController, Constants.CLAW_GRAB_BUTTONPORT);
+  static Trigger clawReleaseButton = new JoystickButton(CraneController, Constants.CLAW_RELEASE_BUTTONPORT);
+  static Trigger leverMoveButton = new JoystickButton(CraneController, Constants.LEVER_MOVE_BUTTONPORT);
+  static Trigger extendorInButton = new POVButton(CraneController, Constants.EXTENDOR_IN_POV);
+  static Trigger extendorOutButton = new POVButton(CraneController, Constants.EXTENDOR_OUT_POV);
+  static Trigger autoTestButton = new JoystickButton(DriveController, 15);
 }

@@ -5,9 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import edu.wpi.first.cameraserver.CameraServer;
 
 
 /**
@@ -34,6 +35,8 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    m_robotContainer.navchipManager.calibrate();
+    CameraServer.startAutomaticCapture();
 
   }
 
@@ -58,6 +61,9 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putBoolean("LimitSwitchb", m_robotContainer.sensors.CraneSwitchedFront());
+    SmartDashboard.putBoolean("LimitSwitchf", m_robotContainer.sensors.CraneSwitchedBack());
+    SmartDashboard.putNumber("Extendor Position", m_robotContainer.sensors.GetExtendorPos());
 
   }
 
@@ -103,7 +109,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if(OI.noCommandController.getBackButtonPressed()){
+    if(OI.DriveController.getRawButton(2) ||OI.CraneController.getRawButton(2)){
       CommandScheduler.getInstance().cancelAll();
     }
 

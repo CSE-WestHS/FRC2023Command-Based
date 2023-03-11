@@ -8,11 +8,14 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BasicDrive.*;
+import frc.robot.commands.AutonomousCommands.AutoBalance;
 import frc.robot.commands.BalanceSteps.*;
-import frc.robot.commands.BalanceSteps.DriveTillDegrees;
-import frc.robot.commands.Dual_Joysticks;
-
+import frc.robot.commands.CraneCommands.*;
+import frc.robot.commands.AutonomousCommands.*;
+import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ExtendorSubsystem;
+import frc.robot.subsystems.LeverSubsystem;
 import frc.robot.subsystems.NavchipManager;
 
 /**
@@ -29,22 +32,41 @@ public class RobotContainer {
   private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public final NavchipManager navchipManager = new NavchipManager();
 
-  //
-  
+  public final LimitSensors sensors = new LimitSensors();
+
+  private final ClawSubsystem clawSubsystem = new ClawSubsystem();
+  private final ExtendorSubsystem extendorSubsystem = new ExtendorSubsystem();
+  private final LeverSubsystem leverSubsystem = new LeverSubsystem();
+
+
   // basic drive commands
   private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
-  private final DriveForward DriveFiveRotations = new DriveForward(DriveSubsystem, 5.0, 0.5);
-  private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem, 3.0, 0.25);
-  private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, 90, 0.5);
-  private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, navchipManager, 180, 0.3);
   
   // balance commands
-  private final DriveTillDegrees driveTillDegrees = new DriveTillDegrees(DriveSubsystem, navchipManager);
   private final Balance balance = new Balance(DriveSubsystem, navchipManager);
+
+  // crane commands
+
+  // command to bring lever to its starting position
+  private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, sensors, Constants.LEVERSTARTPOSITION);
+  private final RunLever ManualLever = new RunLever(leverSubsystem, sensors);
+  // command to bring Extendor to its starting position
+
+  private final ExtendorToPosition ExtendorStartPosition = new ExtendorToPosition(extendorSubsystem, sensors, Constants.EXTENDORSTARTPOSITION);
+  private final RunExtendor ExtendOut = new RunExtendor(extendorSubsystem, false, sensors);
+  private final RunExtendor ExtendIn = new RunExtendor(extendorSubsystem, true, sensors);
+
+  // commands to run the claw
+  private final DropObject dropObject = new DropObject(clawSubsystem);
+  private final RunClaw intakeClaw = new RunClaw(clawSubsystem, false);
+  private final RunClaw outtakeClaw = new RunClaw(clawSubsystem, true);
 
   // auto commands
   private final AutoBalance autoBalance = new AutoBalance(DriveSubsystem, navchipManager);
-
+  private final DriveBackward SimpleAuto = new DriveBackward(DriveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED);
+  private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
+  private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
+  private final LeverToPosition testLever = new LeverToPosition(leverSubsystem, sensors, 0);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -65,12 +87,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    OI.aButton.onTrue(DriveFiveRotations);
-    OI.bButton.onTrue(DriveThreeRotoations);
-    OI.xButton.onTrue(Turn90Degrees);
-    OI.yButton.onTrue(Turn180Degrees);
-    OI.LBButton.onTrue(driveTillDegrees);
-    OI.RBButton.onTrue(balance);
+    OI.balanceButton.onTrue(balance);
+    OI.leverMoveButton.whileTrue(ManualLever);
+    OI.extendorOutButton.whileTrue(ExtendOut);
+    OI.extendorInButton.whileTrue(ExtendIn);
+    OI.clawReleaseButton.whileTrue(outtakeClaw);
+    OI.clawGrabButton.whileTrue(intakeClaw);
+    OI.autoTestButton.onTrue(scoreAndBalance);
+    
   }
 
   /**

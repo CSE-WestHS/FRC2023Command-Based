@@ -33,7 +33,7 @@ public class DriveTillDegrees extends CommandBase {
     public void execute() {
         // driveforward at a decent speed,
         // powerful enough to get on, slow enough to stay in control
-        driveSubsystem.setSpeed(0.5, 0.5);
+        driveSubsystem.setSpeed(-0.5, -0.5);
 
         // check value of NavChip
         pitch = NavchipManager.getPitch();

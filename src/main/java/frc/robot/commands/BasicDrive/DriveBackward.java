@@ -9,12 +9,12 @@ public class DriveBackward extends CommandBase{
    * @param drivesystem The subsystem used by this command.
    */
   private final DriveSubsystem DriveSubsystem;
-  private final double rotations;
+  private final double distance;
   private final double speed;
 
-  public DriveBackward(DriveSubsystem drivesystem, double rotations, double speed) {
+  public DriveBackward(DriveSubsystem drivesystem, double distance, double speed) {
     DriveSubsystem = drivesystem;
-    this.rotations = rotations;
+    this.distance = distance;
     this.speed = speed;
     addRequirements(drivesystem);
   }
@@ -42,7 +42,7 @@ public class DriveBackward extends CommandBase{
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return DriveSubsystem.getEncoderPosition() >= rotations;
+    return DriveSubsystem.getEncoderPosition() >= distance;
   }
 }
 
