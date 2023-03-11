@@ -41,11 +41,11 @@ public class RunExtendor extends CommandBase {
     hitLimit = false;
     if (invert ^ Constants.EXTENDOR_SENSOR_INVERTED){
       if (sensors.GetExtendorPos() > 20){
-        hitLimit = true;
+  //      hitLimit = true;
       }
     }else {
       if (sensors.GetExtendorPos() < 1){
-        hitLimit = true;
+ //       hitLimit = true;
       }
     }
     if (!hitLimit){

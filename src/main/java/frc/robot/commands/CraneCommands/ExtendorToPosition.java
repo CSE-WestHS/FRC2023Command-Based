@@ -46,11 +46,11 @@ public class ExtendorToPosition extends CommandBase {
     hitLimit = false;
     if (tooFar ^ Constants.EXTENDOR_SENSOR_INVERTED){
       if (sensors.GetExtendorPos() > 20){
-        hitLimit = true;
+ //       hitLimit = true;
       }
     }else {
       if (sensors.GetExtendorPos() < 1){
-        hitLimit = true;
+ //       hitLimit = true;
       }
     }
     if (!hitLimit) {
