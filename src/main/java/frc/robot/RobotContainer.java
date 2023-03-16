@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BasicDrive.*;
 import frc.robot.commands.AutonomousCommands.AutoBalance;
@@ -67,6 +69,7 @@ public class RobotContainer {
   private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
   private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
   private final LeverToPosition testLever = new LeverToPosition(leverSubsystem, sensors, 0);
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -76,6 +79,12 @@ public class RobotContainer {
     configureButtonBindings();
     DriveSubsystem.setDefaultCommand(Dual_Joysticks);
 
+    //Creating an autonomous chooser in Smartdashboard
+
+ 
+    m_chooser.setDefaultOption("Auto Balance", autoBalance);
+    m_chooser.addOption("Drive Backwards", SimpleAuto);
+    SmartDashboard.putData(m_chooser);
   }
 
   /**
@@ -104,6 +113,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autoBalance;
+    return m_chooser.getSelected();
   }
 }
