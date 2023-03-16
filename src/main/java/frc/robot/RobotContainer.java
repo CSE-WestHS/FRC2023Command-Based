@@ -10,15 +10,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BasicDrive.*;
-import frc.robot.commands.AutonomousCommands.AutoBalance;
+import frc.robot.commands.AutonomousCommands.*;
 import frc.robot.commands.BalanceSteps.*;
 import frc.robot.commands.CraneCommands.*;
-import frc.robot.commands.AutonomousCommands.*;
+
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExtendorSubsystem;
 import frc.robot.subsystems.LeverSubsystem;
 import frc.robot.subsystems.NavchipManager;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -39,6 +40,7 @@ public class RobotContainer {
   private final ClawSubsystem clawSubsystem = new ClawSubsystem();
   private final ExtendorSubsystem extendorSubsystem = new ExtendorSubsystem();
   private final LeverSubsystem leverSubsystem = new LeverSubsystem();
+  
 
 
   // basic drive commands
@@ -69,6 +71,7 @@ public class RobotContainer {
   private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
   private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
   private final LeverToPosition testLever = new LeverToPosition(leverSubsystem, sensors, 0);
+  private final DoNothing doNothing = new DoNothing();
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -84,6 +87,7 @@ public class RobotContainer {
  
     m_chooser.setDefaultOption("Auto Balance", autoBalance);
     m_chooser.addOption("Drive Backwards", SimpleAuto);
+    m_chooser.addOption("Do Nothing", doNothing);
     SmartDashboard.putData(m_chooser);
   }
 

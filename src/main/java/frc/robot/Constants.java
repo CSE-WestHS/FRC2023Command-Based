@@ -45,7 +45,7 @@ public final class Constants {
     public static final int ENCODERRESETINGPOSITION = 0;
     public static final double ENCODER_CONVERSION_FACTOR = 0.5; //conversion factor for Drive Encoders to make the distance in feet
     public static final double AUTO_DRIVE_DISTANCE = 15;
-    public static final double AUTO_DRIVE_SPEED = 0.75;
+    public static final double AUTO_DRIVE_SPEED = 0.5;
     //#endregion
     //#region Balance Constants
     public static final double DISTANCEMULTIPLIER = 0.035;
