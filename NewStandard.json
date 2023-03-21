@@ -161,7 +161,11 @@
           "7,0": {
             "size": [
               8,
+<<<<<<< HEAD
               6
+=======
+              5
+>>>>>>> b91e38a58489977cfab6592694d2da6a05fb2a2d
             ],
             "content": {
               "_type": "Camera Stream",
@@ -195,12 +199,25 @@
           "2,3": {
             "size": [
               4,
-              1
+              2
             ],
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
               "_title": "/SmartDashboard/SendableChooser[0]",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/TimeLevel",
+              "_title": "TimeLevel",
               "_glyph": 148,
               "_showGlyph": false
             }

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.NavchipManager;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Balance extends CommandBase {
@@ -37,6 +38,7 @@ public class Balance extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        SmartDashboard.putNumber("TimeLevel", Timer.get());
         // update pitch reading and error
         pitch = NavchipManager.getPitch();
         currentYaw = NavchipManager.getYaw();
@@ -45,8 +47,8 @@ public class Balance extends CommandBase {
             //Reset timer
             Timer.reset();
             Timer.stop();
-            //Figure out speed at which to drive
-            double driveAdj = pitch * Constants.DISTANCEMULTIPLIER;
+            //Figure out speed at which to dri
+            double driveAdj = (pitch / Math.abs(pitch)) * 0.36;
             double steerAdj = 0.0;
             //Figure out how much to turn
             if (currentYaw >= desiredYaw + 3 || currentYaw <= desiredYaw - 3) {
@@ -81,6 +83,6 @@ public class Balance extends CommandBase {
 
         // end if NavChip is level and has stayed level for a period of time
         boolean isLevel = pitch <= Constants.LEVELPITCH && pitch >= -Constants.LEVELPITCH;
-        return isLevel && Timer.get() > Constants.LEVELTIME;
+        return isLevel && (Timer.get() > Constants.LEVELTIME);
     }
 }

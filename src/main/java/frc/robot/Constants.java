@@ -40,12 +40,12 @@ public final class Constants {
     //#region DriveSubsystem Constants
     public static final int SMARTCURRENTLIMIT = 60;
     public static final int CLAWCURRENTLIMIT = 15;
-    public static final double MAXSPEED = 0.8;
+    public static final double MAXSPEED = 1.0;
     public static final int ENCODERSTARTINGPOSITION = 0;
     public static final int ENCODERRESETINGPOSITION = 0;
     public static final double ENCODER_CONVERSION_FACTOR = 0.5; //conversion factor for Drive Encoders to make the distance in feet
     public static final double AUTO_DRIVE_DISTANCE = 40;
-    public static final double AUTO_DRIVE_SPEED = 0.6;
+    public static final double AUTO_DRIVE_SPEED = 0.5;
     //#endregion
     //#region Balance Constants
     public static final double DISTANCEMULTIPLIER = 0.035;
@@ -81,8 +81,8 @@ public final class Constants {
 
     //#endregion
     //#region Crane Constants
-    public static final double EXTENDORSPEED = 0.7;
-    public static final double LEVERSPEED = .75;
+    public static final double EXTENDORSPEED = 1.0;
+    public static final double LEVERSPEED = .9;
     public static final double CLAWSPEED = 0.6;
     public static final double CLAWTIME = 3.0;
     public static final double LEVERSTARTPOSITION = 0;
