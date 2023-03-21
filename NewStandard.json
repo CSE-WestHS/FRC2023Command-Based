@@ -158,10 +158,10 @@
               "_showGlyph": false
             }
           },
-          "8,0": {
+          "7,0": {
             "size": [
-              6,
-              4
+              8,
+              6
             ],
             "content": {
               "_type": "Camera Stream",
@@ -192,7 +192,7 @@
               "_showGlyph": false
             }
           },
-          "6,5": {
+          "2,3": {
             "size": [
               4,
               1
@@ -224,7 +224,7 @@
   ],
   "windowGeometry": {
     "x": 0.0,
-    "y": 4.0,
+    "y": 6.666666507720947,
     "width": 1280.0,
     "height": 680.0
   }

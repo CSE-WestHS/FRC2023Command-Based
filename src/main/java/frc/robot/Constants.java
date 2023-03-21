@@ -54,7 +54,7 @@ public final class Constants {
     public static final double LEVELPITCH = 3;
     public static final double YAWTHRESHOLD = 5;
     public static final double RAMPPITCH = 12;
-    public static final double LEVELTIME = 3.0;
+    public static final double LEVELTIME = 5.0;
     //#endregion
     //#region OI Constants
     //XBOX CONTROLLER CONSTANTS

@@ -49,13 +49,13 @@ public class Balance extends CommandBase {
             double driveAdj = pitch * Constants.DISTANCEMULTIPLIER;
             double steerAdj = 0.0;
             //Figure out how much to turn
-            if (currentYaw >= desiredYaw + 5 || currentYaw <= desiredYaw - 5) {
+            if (currentYaw >= desiredYaw + 3 || currentYaw <= desiredYaw - 3) {
                 steerAdj = currentYaw * Constants.STEERINGMULTIPLIER;
             }
 
             //set speeds
-            double leftSpd = -steerAdj + driveAdj;
-            double rightSpd = steerAdj + driveAdj;
+            double leftSpd = (-steerAdj + driveAdj);
+            double rightSpd = (steerAdj + driveAdj);
             DriveSubsystem.setSpeed(leftSpd, rightSpd);
         }
 
