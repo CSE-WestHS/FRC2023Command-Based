@@ -158,10 +158,10 @@
               "_showGlyph": false
             }
           },
-          "8,0": {
+          "7,0": {
             "size": [
-              6,
-              4
+              8,
+              5
             ],
             "content": {
               "_type": "Camera Stream",
@@ -192,15 +192,28 @@
               "_showGlyph": false
             }
           },
-          "6,5": {
+          "3,3": {
             "size": [
               4,
-              1
+              2
             ],
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
               "_title": "/SmartDashboard/SendableChooser[0]",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/TimeLevel",
+              "_title": "TimeLevel",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -224,7 +237,7 @@
   ],
   "windowGeometry": {
     "x": 0.0,
-    "y": 4.0,
+    "y": 6.666666507720947,
     "width": 1280.0,
     "height": 680.0
   }

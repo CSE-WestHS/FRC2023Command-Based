@@ -11,7 +11,7 @@ import frc.robot.Constants;
 public class AutoBalance extends SequentialCommandGroup {
     public AutoBalance(DriveSubsystem driveSubsystem, NavchipManager navchipManager) {
         addCommands(
-                new DriveBackward(driveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED));
-                new Balance(driveSubsystem, navchipManager);
+                new DriveBackward(driveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED),
+                new Balance(driveSubsystem, navchipManager));
     }
 }
