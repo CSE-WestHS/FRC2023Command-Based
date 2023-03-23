@@ -47,8 +47,8 @@ public class Balance extends CommandBase {
             //Reset timer
             Timer.reset();
             Timer.stop();
-            //Figure out speed at which to dri
-            double driveAdj = (pitch / Math.abs(pitch)) * 0.36;
+            //Figure out speed at which to drive
+            double driveAdj = (pitch / Math.abs(pitch)) * 0.41;
             double steerAdj = 0.0;
             //Figure out how much to turn
             if (currentYaw >= desiredYaw + 3 || currentYaw <= desiredYaw - 3) {
