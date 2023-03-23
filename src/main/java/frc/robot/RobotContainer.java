@@ -88,7 +88,7 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Auto Balance", autoBalance);
     m_chooser.addOption("Drive Backwards", SimpleAuto);
     m_chooser.addOption("Do Nothing", doNothing);
-    m_chooser.addOption("Score Cube", autoScore);
+    m_chooser.addOption("Score and Back Up", autoScore);
     m_chooser.addOption("Score and Balance", scoreAndBalance);
     SmartDashboard.putData(m_chooser);
   }
