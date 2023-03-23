@@ -42,17 +42,17 @@ public class LeverToPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    hitLimit = sensors.CraneSwitchedBack();
-    if (tooFar) {
-      hitLimit = sensors.CraneSwitchedFront();
-    }
-    if (!hitLimit) {
+  //  hitLimit = sensors.CraneSwitchedBack();
+ //   if (tooFar) {
+   //   hitLimit = sensors.CraneSwitchedFront();
+ //   }
+   // if (!hitLimit) {
       if (tooFar) {
         lever.setSpeed(-Constants.LEVERSPEED);
       } else {
         lever.setSpeed(Constants.LEVERSPEED);
       }
-    }
+   // }
   }
 
   // Called once the command ends or is interrupted.
@@ -64,9 +64,9 @@ public class LeverToPosition extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (hitLimit) {
-      return true;
-   } else if (tooFar) {
+   // if (hitLimit) {
+   //   return true;
+     if (tooFar) {
       return lever.getEncoderPosition() <= limitEndPos;
     } else {
       return lever.getEncoderPosition() >= limitEndPos;
