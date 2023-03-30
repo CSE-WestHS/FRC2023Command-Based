@@ -85,11 +85,11 @@ public class RobotContainer {
     //Creating an autonomous chooser in Smartdashboard
 
  
-    m_chooser.setDefaultOption("Auto Balance", autoBalance);
+    m_chooser.setDefaultOption("Balance", autoBalance);
     m_chooser.addOption("Drive Backwards", SimpleAuto);
     m_chooser.addOption("Do Nothing", doNothing);
     m_chooser.addOption("Score and Back Up", autoScore);
-    m_chooser.addOption("Score and Balance", scoreAndBalance);
+    m_chooser.addOption("Tow-Mater", scoreAndBalance);
     SmartDashboard.putData(m_chooser);
   }
 
@@ -108,7 +108,6 @@ public class RobotContainer {
     OI.extendorInButton.whileTrue(ExtendIn);
     OI.clawReleaseButton.whileTrue(outtakeClaw);
     OI.clawGrabButton.whileTrue(intakeClaw);
-    OI.autoTestButton.onTrue(scoreAndBalance);
     
   }
 

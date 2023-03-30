@@ -14,7 +14,7 @@ public class AutoScore extends SequentialCommandGroup{
     public AutoScore(ExtendorSubsystem extendor, LeverSubsystem lever, ClawSubsystem claw, LimitSensors sensors, DriveSubsystem drive){
         addCommands(
             new CubeScore(drive, claw, extendor, lever, sensors), 
-            new DriveBackward(drive, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED)
+            new DriveBackward(drive, 62, Constants.AUTO_DRIVE_SPEED)
             );
         
     }

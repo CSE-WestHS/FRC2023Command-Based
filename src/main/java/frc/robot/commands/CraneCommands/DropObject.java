@@ -25,6 +25,7 @@ public class DropObject extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    clawTimer.reset();
     clawTimer.start();
     claw.stopClaw();
   }
@@ -44,6 +45,6 @@ public class DropObject extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return clawTimer.get() >= Constants.CLAWTIME;
+    return clawTimer.get()>=1;
   }
 }
