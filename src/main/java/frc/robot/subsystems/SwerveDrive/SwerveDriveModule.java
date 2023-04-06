@@ -13,10 +13,11 @@ public class SwerveDriveModule {
     boolean steeringInverted = Constants.SWERVESTEERINGMODULEINVERT;
     
     boolean driveMotorInverted;
-    public SwerveDriveModule(int DriveMotorCan, int SteerMotorCan, double DegreesFromFront, int encoderID){
-        /**
+/**
          * Driving motor, steering motor, and how many degrees it is from front Also encoder. 
          */
+    public SwerveDriveModule(int DriveMotorCan, int SteerMotorCan, double DegreesFromFront, int encoderID){
+        
         driveMotor = new CANSparkMax(DriveMotorCan, MotorType.kBrushless);
         steerMotor = new CANSparkMax(SteerMotorCan, MotorType.kBrushless);
         this.DegreesFromFront = DegreesFromFront;
@@ -34,8 +35,8 @@ public class SwerveDriveModule {
     public double getDegrees(){
         return encoder.getPosition() % 360;
     }
-    public void invertDriveMotor(){
-        if (driveMotorInverted = false){
+     void invertDriveMotor(){
+        if (!driveMotorInverted){
             driveMotor.setInverted(true);
             driveMotorInverted = true;
         } else{
@@ -58,7 +59,34 @@ public class SwerveDriveModule {
 
 
     }
+    /** IMPORTANT!!! READ DOCUMENTATION BEFORE USING!!!!
+         * MUST be used in a way that would repeat, ie a while loop with this as the condition.
+         * This way came to me in a dream, so it must be good. -SB
+         */
+    public boolean alignedTo(int angle){
+        
+        angle = angle % 360;
+        int degreesAsInt = (int)getDegrees();
+        double shortestDistance = calculateShortestDistance(angle, degreesAsInt);
+        double degreeOff = shortestDistance;
+        if (degreeOff == 0){
+            steerMotor.stopMotor();
+            return true;
+        }
+        if (degreeOff > 0 ^ steeringInverted){
+            
+            steerMotor.set(Constants.STEERSPEED);
+            return false;
+        } else {
+            steerMotor.set(-Constants.STEERSPEED);
+            return true;
+        }
+
+    }
+    /** NO LONGER MAINTAINED!!! Only for use of one motor at a time. */
     public void setAngle(int angle){
+        // Poor setAngle. Became deprecated before testing.
+        
         angle = angle % 360;
         int degreesAsInt = (int)getDegrees();
         //double degreeShift = 0;
@@ -74,10 +102,20 @@ public class SwerveDriveModule {
             } else {
                 steerMotor.set(-Constants.STEERSPEED);
             }
+            degreesAsInt = (int)getDegrees();
             degreeOff = calculateShortestDistance(angle, degreesAsInt);
              
             
 
         }
+        steerMotor.stopMotor();
     }
-}
+    public void setSpeed(double speed){
+        driveMotor.set(speed);
+    }
+    public double getDegreesFromFront(){
+        return DegreesFromFront;
+    }
+    }
+
+
