@@ -106,6 +106,21 @@ public final class Constants {
 
 
     ////#endregion LimitSensors
+    public static final double STEERSPEED = 0.7;
+    public static final boolean SWERVESTEERINGMODULEINVERT = false;
+    // Just temporary, set to values needed.
+    public static final int FRONTLEFTDRIVEID = 1;
+    public static final int FRONTLEFTSTEERID = 2;
+    public static final int FRONTLEFTENCODERID = 3;
+    public static final int FRONTRIGHTDRIVEID = 4;
+    public static final int FRONTRIGHTSTEERID = 5;
+    public static final int FRONTRIGHTENCODERID = 6;
+    public static final int BACKLEFTDRIVEID = 7;
+    public static final int BACKLEFTSTEERID = 8;
+    public static final int BACKLEFTENCODERID = 9;
+    public static final int BACKRIGHTDRIVEID = 10;
+    public static final int BACKRIGHTSTEERID = 11;
+    public static final int BACKRIGHTENCODERID = 12;
 }
 
 
