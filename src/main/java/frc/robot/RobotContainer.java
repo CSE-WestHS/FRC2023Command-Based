@@ -7,16 +7,18 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.BasicDrive.*;
-import frc.robot.commands.AutonomousCommands.AutoBalance;
-import frc.robot.commands.BalanceSteps.*;
+//import frc.robot.commands.BasicDrive.*;
+//import frc.robot.commands.AutonomousCommands.AutoBalance;
+//import frc.robot.commands.BalanceSteps.*;
 import frc.robot.commands.CraneCommands.*;
-import frc.robot.commands.AutonomousCommands.*;
+//import frc.robot.commands.AutonomousCommands.*;
 import frc.robot.subsystems.ClawSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
+//import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExtendorSubsystem;
 import frc.robot.subsystems.LeverSubsystem;
 import frc.robot.subsystems.NavchipManager;
+import frc.robot.subsystems.SwerveDrive.SwerveDriveManager;
+import frc.robot.commands.SwerveCommands.SwerveDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -29,9 +31,9 @@ import frc.robot.subsystems.NavchipManager;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
+  //private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public final NavchipManager navchipManager = new NavchipManager();
-
+  public final SwerveDriveManager swerveBase = new SwerveDriveManager();
   public final LimitSensors sensors = new LimitSensors();
 
   private final ClawSubsystem clawSubsystem = new ClawSubsystem();
@@ -40,14 +42,15 @@ public class RobotContainer {
 
 
   // basic drive commands
-  private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
-  
+  //private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
+  private final SwerveDrive swerve = new SwerveDrive(swerveBase);
   // balance commands
-  private final Balance balance = new Balance(DriveSubsystem, navchipManager);
+  //private final Balance balance = new Balance(DriveSubsystem, navchipManager);
 
   // crane commands
 
   // command to bring lever to its starting position
+
   private final LeverToPosition LeverStartPosition = new LeverToPosition(leverSubsystem, sensors, Constants.LEVERSTARTPOSITION);
   private final RunLever ManualLever = new RunLever(leverSubsystem, sensors);
   // command to bring Extendor to its starting position
@@ -62,10 +65,10 @@ public class RobotContainer {
   private final RunClaw outtakeClaw = new RunClaw(clawSubsystem, true);
 
   // auto commands
-  private final AutoBalance autoBalance = new AutoBalance(DriveSubsystem, navchipManager);
-  private final DriveBackward SimpleAuto = new DriveBackward(DriveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED);
-  private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
-  private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
+  //private final AutoBalance autoBalance = new AutoBalance(DriveSubsystem, navchipManager);
+  //private final DriveBackward SimpleAuto = new DriveBackward(DriveSubsystem, Constants.AUTO_DRIVE_DISTANCE, Constants.AUTO_DRIVE_SPEED);
+  //private final AutoScore autoScore = new AutoScore(extendorSubsystem, leverSubsystem, clawSubsystem, sensors, DriveSubsystem);
+  //private final ScoreAndBalance scoreAndBalance = new ScoreAndBalance(DriveSubsystem, navchipManager, extendorSubsystem, leverSubsystem, clawSubsystem, sensors);
   private final LeverToPosition testLever = new LeverToPosition(leverSubsystem, sensors, 0);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -74,7 +77,8 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    DriveSubsystem.setDefaultCommand(Dual_Joysticks);
+    //DriveSubsystem.setDefaultCommand(Dual_Joysticks);
+    swerveBase.setDefaultCommand(swerve);
 
   }
 
@@ -87,13 +91,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    OI.balanceButton.onTrue(balance);
+    //OI.balanceButton.onTrue(balance);
     OI.leverMoveButton.whileTrue(ManualLever);
     OI.extendorOutButton.whileTrue(ExtendOut);
     OI.extendorInButton.whileTrue(ExtendIn);
     OI.clawReleaseButton.whileTrue(outtakeClaw);
     OI.clawGrabButton.whileTrue(intakeClaw);
-    OI.autoTestButton.onTrue(scoreAndBalance);
+   // OI.autoTestButton.onTrue(scoreAndBalance);
     
   }
 
@@ -104,6 +108,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autoBalance;
+    return null;
   }
 }
