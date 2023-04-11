@@ -73,6 +73,7 @@ public class SwerveDriveModule {
             steerMotor.stopMotor();
             return true;
         }
+        // If oscillating or slow, change STEERSPEED. If not possible, add logic to change between 2 static speeds based on degreeOff
         if (degreeOff > 0 ^ steeringInverted){
             
             steerMotor.set(Constants.STEERSPEED);
