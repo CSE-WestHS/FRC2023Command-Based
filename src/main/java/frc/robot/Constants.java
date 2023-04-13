@@ -28,14 +28,10 @@ public final class Constants {
     
    //#region Ports
    public static final int CONTROLLERPORT = 0;
-   public static final int FRONTLEFTID = 2;
-   public static final int REARLEFTID = 4;
-   public static final int FRONTRIGHTID = 3;
-   public static final int REARRIGHTID = 5;
-    public static final int EXTENDORMOTORPORT = 6;
-    public static final int CRANEMOTORPORT = 1;
-    public static final int CLAWMOTORPORT = 7;
-    public static final int CLAWTWOMOTORPORT = 8;
+    public static final int EXTENDORMOTORPORT = 13;
+    public static final int CRANEMOTORPORT = 14;
+    public static final int CLAWMOTORPORT = 15;
+    public static final int CLAWTWOMOTORPORT = 16;
     //#endregion
     //#region DriveSubsystem Constants
     public static final int SMARTCURRENTLIMIT = 60;

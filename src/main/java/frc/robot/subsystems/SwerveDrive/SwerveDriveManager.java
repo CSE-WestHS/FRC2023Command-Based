@@ -2,29 +2,30 @@ package frc.robot.subsystems.SwerveDrive;
 import frc.robot.subsystems.SwerveDrive.SwerveDriveModule;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SwerveDriveManager{
+public class SwerveDriveManager extends SubsystemBase{
     SwerveDriveModule frontRight;
     SwerveDriveModule frontLeft;
     SwerveDriveModule backRight;
     SwerveDriveModule backLeft;
     public SwerveDriveManager(){
-        SwerveDriveModule frontLeft = new SwerveDriveModule(
+       this.frontLeft = new SwerveDriveModule(
             Constants.FRONTLEFTDRIVEID, 
             Constants.FRONTLEFTSTEERID, 
             315, 
             Constants.FRONTLEFTENCODERID);
-        SwerveDriveModule frontRight = new SwerveDriveModule(
+         this.frontRight = new SwerveDriveModule(
             Constants.FRONTRIGHTDRIVEID, 
             Constants.FRONTRIGHTSTEERID, 
             45, 
             Constants.FRONTRIGHTENCODERID);
-        SwerveDriveModule backLeft = new SwerveDriveModule(
+        this.backLeft = new SwerveDriveModule(
             Constants.BACKLEFTDRIVEID, 
             Constants.BACKLEFTSTEERID, 
             225, 
             Constants.BACKLEFTENCODERID);
-        SwerveDriveModule backRight = new SwerveDriveModule(
+        this.backRight = new SwerveDriveModule(
             Constants.BACKRIGHTDRIVEID, 
              Constants.BACKRIGHTSTEERID, 
              135, 
@@ -43,7 +44,7 @@ public class SwerveDriveManager{
         }
 
     }
-    // Make zeroWheels method
+    // Make zeroWheels
     public void runDriveMotors(double speed){
         frontLeft.setSpeed(speed);
         frontRight.setSpeed(speed);
@@ -58,14 +59,16 @@ public class SwerveDriveManager{
         z *= 5;
         // inverting y
         y = y*-1;
+        x = x*-1;
         double power = Math.sqrt((Math.pow(x, 2)+ Math.pow(y, 2) ));
         if (power != 0){
             // Funky math! -SB
             double normalAdjust = power/1;
             y *= normalAdjust;
             x *= normalAdjust;
-            double angle = Math.atan(y/x);
-            if (y<0){
+            double angle = Math.atan(y/x) * 180 / Math.PI;
+            angle -= 90;
+            if (x<0){
                 angle += 180;
             }
             // Angle and Direction!
@@ -73,6 +76,9 @@ public class SwerveDriveManager{
                 power = 1;
             }
             // Front wheel adjust
+            if (angle < -45){
+                angle += 360;
+            }
             double adjFR = z;
             double adjFL = -z;
             double adjBR = z;
@@ -89,12 +95,17 @@ public class SwerveDriveManager{
                 adjFR = -z;
                 adjFL = -z;
             }
+            SmartDashboard.putNumber("Direction", angle);
+            SmartDashboard.putNumber("Power", power);
+            System.out.println("Updated SMART");
+            // Uncomment below lines, commented for sim only
             wheelsToAngles((int)(angle + adjFR), (int)(angle+ adjBR), (int)(angle+ adjBL), (int)(angle+ adjFL));
+            
             runDriveMotors(power);
 
         }
         
-
+            
 
 
     }
@@ -105,6 +116,8 @@ public class SwerveDriveManager{
             inverted = true;
         }
         turnFactor = Math.abs(turnFactor);
+        
+
         if (inverted){
             wheelsToAngles(315, 45, 135, 225);
         } else {

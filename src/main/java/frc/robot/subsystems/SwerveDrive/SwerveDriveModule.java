@@ -1,15 +1,20 @@
 package frc.robot.subsystems.SwerveDrive;
-import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.sensors.WPI_CANCoder;
+import com.ctre.phoenix.sensors.CANCoderSimCollection;
+
 import frc.robot.Constants;
 import  com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
+
 import com.revrobotics.RelativeEncoder;
 public class SwerveDriveModule {
     
     CANSparkMax driveMotor;
     CANSparkMax steerMotor;
     double DegreesFromFront;
-    CANCoder encoder;
+    WPI_CANCoder encoder;
     boolean steeringInverted = Constants.SWERVESTEERINGMODULEINVERT;
     
     boolean driveMotorInverted;
@@ -21,7 +26,8 @@ public class SwerveDriveModule {
         driveMotor = new CANSparkMax(DriveMotorCan, MotorType.kBrushless);
         steerMotor = new CANSparkMax(SteerMotorCan, MotorType.kBrushless);
         this.DegreesFromFront = DegreesFromFront;
-        encoder = new CANCoder(encoderID);
+        encoder = new WPI_CANCoder(encoderID);
+        //CANCoderSimCollection EncoderSim = encoder.getSimCollection();
         driveMotor.clearFaults();
         steerMotor.clearFaults();
         driveMotor.setSmartCurrentLimit(Constants.SMARTCURRENTLIMIT);
