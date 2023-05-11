@@ -7,12 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.BasicDrive.*;
-import frc.robot.commands.BalanceSteps.*;
-import frc.robot.commands.BalanceSteps.DriveTillDegrees;
-import frc.robot.commands.Dual_Joysticks;
+import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.commands.swerveO;
 
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.commands.swerveO;
 import frc.robot.subsystems.NavchipManager;
 
 /**
@@ -26,24 +24,25 @@ import frc.robot.subsystems.NavchipManager;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem DriveSubsystem = new DriveSubsystem();
+  private final SwerveSubsystem  DriveSubsystem = new SwerveSubsystem();
   public final NavchipManager navchipManager = new NavchipManager();
 
   //
   
   // basic drive commands
-  private final Dual_Joysticks Dual_Joysticks = new Dual_Joysticks(DriveSubsystem);
-  private final DriveForward DriveFiveRotations = new DriveForward(DriveSubsystem, 5.0, 0.5);
-  private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem, 3.0, 0.25);
-  private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, 90, 0.5);
-  private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, navchipManager, 180, 0.3);
+ // private final dual_joysticks dual_joysticks = new dual_joysticks(DriveSubsystem);
+  //private final DriveForward DriveFiveRotations = new DriveForward(DriveSubsystem, 5.0, 0.5);
+  //private final DriveBackward DriveThreeRotoations = new DriveBackward(DriveSubsystem, 3.0, 0.25);
+  //private final TurnLeft Turn90Degrees = new TurnLeft(DriveSubsystem, navchipManager, 90, 0.5);
+  //private final TurnRight Turn180Degrees = new TurnRight(DriveSubsystem, navchipManager, 180, 0.3);
+  private final swerveO m_swerveO = new swerveO(DriveSubsystem);
   
   // balance commands
-  private final DriveTillDegrees driveTillDegrees = new DriveTillDegrees(DriveSubsystem, navchipManager);
-  private final Balance balance = new Balance(DriveSubsystem, navchipManager);
+ // private final DriveTillDegrees driveTillDegrees = new DriveTillDegrees(DriveSubsystem, navchipManager);
+  //private final Balance balance = new Balance(DriveSubsystem, navchipManager);
 
   // auto commands
-  private final AutoBalance autoBalance = new AutoBalance(DriveSubsystem, navchipManager);
+  //private final AutoBalance autoBalance = new AutoBalance(DriveSubsystem, navchipManager);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -52,7 +51,7 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    DriveSubsystem.setDefaultCommand(Dual_Joysticks);
+    DriveSubsystem.setDefaultCommand(m_swerveO);
 
   }
 
@@ -65,12 +64,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    OI.aButton.onTrue(DriveFiveRotations);
-    OI.bButton.onTrue(DriveThreeRotoations);
-    OI.xButton.onTrue(Turn90Degrees);
-    OI.yButton.onTrue(Turn180Degrees);
-    OI.LBButton.onTrue(driveTillDegrees);
-    OI.RBButton.onTrue(balance);
+   
   }
 
   /**
@@ -80,6 +74,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autoBalance;
+    return null;
   }
 }
