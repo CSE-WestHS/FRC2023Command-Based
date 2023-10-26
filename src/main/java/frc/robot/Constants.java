@@ -40,6 +40,7 @@ public final class Constants {
     //#region DriveSubsystem Constants
     public static final int SMARTCURRENTLIMIT = 60;
     public static final int CLAWCURRENTLIMIT = 15;
+    public static final int EXTENDORCURRENTLIMIT = 5;
     public static final double MAXSPEED = 1.0;
     public static final int ENCODERSTARTINGPOSITION = 0;
     public static final int ENCODERRESETINGPOSITION = 0;
